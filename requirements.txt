@@ -1,0 +1,30 @@
+# Deep Learning
+torch
+torch-geometric
+
+# Core scientific stack
+numpy
+scipy
+scikit-learn
+
+# Graph processing
+networkx
+node2vec
+
+# Utilities
+tqdm
+pandas
+
+# Community detection
+python-louvain
+leidenalg
+
+# ICD code processing
+icdcodex
+
+# MIMIC-III data handling (optional)
+pyarrow
+
+# Visualization (optional)
+matplotlib
+seaborn

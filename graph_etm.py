@@ -56,7 +56,11 @@ class MLP(nn.Module):
                 h = F.relu(self.batch_norms[layer](self.linears[layer](h)))
             return self.linears[self.num_layers - 1](h)
 
-
+# GAT block: học medical code embeddings p từ KG
+# (1) Khởi tạo embedding cho mỗi ICD/CPT code: self.init.weight
+# (2) Truyền qua 3 layer GATConv
+# (3) Kết hợp embedding từ từng layer → output final embedding ρ
+# Đây chính là ρ in ETM: word embedding matrix nhưng được học từ KG chứ không học end-to-end.
 class GCNet(nn.Module):
     def __init__(self, num_nodes, num_feature, node_embeddings=None, dropout_rate=0.4):
         nn.Module.__init__(self)
@@ -93,7 +97,7 @@ class GCNet(nn.Module):
 
 
         # FIXME: initialize node embedding 
-        x = self.init.weight
+        x = self.init.weight # node initial embeddings
         embed_rep = [x]
         x = self.in_dropout(x)
 
@@ -106,13 +110,22 @@ class GCNet(nn.Module):
 
         # FIXME:
         embed_rep = torch.cat(embed_rep, dim=1)
-        output = self.fc(embed_rep)
+        output = self.fc(embed_rep) # Learned code embedding ρ
         # embed_rep = torch.stack(embed_rep, dim=2)
         # output = self.pooling(embed_rep).squeeze(-1)
         # output = torch.stack(embed_rep).max(0)[0]
         # output = torch.stack(embed_rep).mean(0)[0]
         return output
 
+# GETM = Graph-Embedded Topic Model.
+# (A) init_graph → xây Knowledge Graph để input vào GAT
+# (B) self.GCN = GCNet(...) → GAT encoder
+# (C) self.alphas → Topic Embedding Layer (α)
+# (D) q_θ → Variational Encoder cho document-topic θ
+# (E) get_rho() → lấy code embeddings từ GAT
+# (F) get_beta() → Topic-word distribution β
+# (G) decode() → Likelihood p(x|θ,β)
+# (H) forward() → loss = KL + Reconstruction
 class GETM(nn.Module):
     def init_graph(self, G, embed):
         x = torch.from_numpy(embed).to(self.device).float()
@@ -232,7 +245,6 @@ class GETM(nn.Module):
         # GCN_out = self.graph.x
         for i, c in enumerate(self.code_types):
             self.rho[c] = GCN_out[partition[i]:partition[i+1]]
-            
 
     def get_beta(self):
         self.get_rho()
