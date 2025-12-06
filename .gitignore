@@ -1,6 +1,6 @@
-/.idea
+mimic-iii-clinical-database-demo-1.4/
 
-
+.idea/
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
