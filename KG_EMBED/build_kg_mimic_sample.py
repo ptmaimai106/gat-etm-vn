@@ -126,7 +126,7 @@ class MIMIC_KG_Builder:
         print("After that, choose the sampling data")
 
         # ===== SAMPLE MODE =====
-        SAMPLE_SUBJECTS = set(self.admissions['subject_id'].dropna().unique()[:3])
+        SAMPLE_SUBJECTS = set(self.admissions['subject_id'].dropna().unique()[:1])
         self.admissions = self.admissions[self.admissions['subject_id'].isin(SAMPLE_SUBJECTS)]
 
         self.diagnoses_icd = self.diagnoses_icd[self.diagnoses_icd['subject_id'].isin(SAMPLE_SUBJECTS)]
@@ -180,7 +180,10 @@ class MIMIC_KG_Builder:
         # Add root node
         root_icd = 'ICD9_ROOT'
         # Optional: limit ICD hierarchy for super tiny KG
-        icd9_nodes = set(list(icd9_nodes)[:30])
+        # icd9_nodes = set(list(icd9_nodes)[:30])
+
+        icd9_nodes = set(list(icd9_nodes)[:1])
+
         for node in icd9_nodes:
             if len(node) == 3:  # Top-level 3-digit codes
                 icd9_edges.append((root_icd, node))
@@ -460,7 +463,7 @@ class MIMIC_KG_Builder:
         cooccurrence_counts = Counter()
         
         print("  Processing admissions for co-occurrence...")
-        hadm_list = list(hadm_to_icd.keys())[:5]
+        hadm_list = list(hadm_to_icd.keys())[:1]
         for hadm_id in tqdm(hadm_list, desc="  Admissions"):
             # ICD9 <-> ATC
             for icd in hadm_to_icd[hadm_id]:

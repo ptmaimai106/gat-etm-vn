@@ -70,6 +70,12 @@ Output:
   - Nodes: ICD9_ROOT + all prefix levels + leaf codes
   - Edges: hierarchical edges between parent-child
   - Vocab: sorted list of unique ICD9 codes (original format)
+
+? Tại sao phải "Build prefix hierarchy", hiện tai data ở cột icd9_code khá đa dạng:
+   - 3 chữ số
+   - 4 chữ số
+   - 5 chữ số
+   - có cả ký tự  
 ```
 
 #### 2.2 CPT Hierarchy (`build_cpt_hierarchy()`)
