@@ -32,7 +32,7 @@ except ImportError:
 
 
 class MIMIC_KG_Builder:
-    def __init__(self, mimic_path='mimic-iii-clinical-database-demo-1.4', 
+    def __init__(self, mimic_path='../mimic-iii-clinical-database-demo-1.4',
                  output_dir='embed', 
                  embedding_dim=256,
                  window=8,
@@ -906,7 +906,7 @@ def main():
     
     parser = argparse.ArgumentParser(description='Build KG from MIMIC-III')
     parser.add_argument('--mimic_path', type=str, 
-                       default='mimic-iii-clinical-database-demo-1.4',
+                       default='../mimic-iii-clinical-database-demo-1.4',
                        help='Path to MIMIC-III data directory')
     parser.add_argument('--output_dir', type=str, default='embed',
                        help='Output directory for saved files')
