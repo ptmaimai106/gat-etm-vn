@@ -126,7 +126,12 @@ class MIMIC_KG_Builder:
         print("After that, choose the sampling data")
 
         # ===== SAMPLE MODE =====
-        SAMPLE_SUBJECTS = set(self.admissions['subject_id'].dropna().unique()[:1])
+        # Tăng số subjects để có đủ dữ liệu nhưng vẫn giữ nhỏ
+        # Lấy 3-5 subjects để có đủ ICD9 codes cho hierarchy
+        NUM_SAMPLE_SUBJECTS = 5
+        SAMPLE_SUBJECTS = set(self.admissions['subject_id'].dropna().unique()[:NUM_SAMPLE_SUBJECTS])
+        print(f"Sampling {len(SAMPLE_SUBJECTS)} subjects for small KG")
+        
         self.admissions = self.admissions[self.admissions['subject_id'].isin(SAMPLE_SUBJECTS)]
 
         self.diagnoses_icd = self.diagnoses_icd[self.diagnoses_icd['subject_id'].isin(SAMPLE_SUBJECTS)]
@@ -138,11 +143,19 @@ class MIMIC_KG_Builder:
 
 
     def build_icd9_hierarchy(self):
-        """Build ICD9 diagnosis hierarchy"""
-        print("Building ICD9 hierarchy...")
+        """Build ICD9 diagnosis hierarchy - SIMPLE MODE: only 1 ICD-9 code"""
+        print("Building ICD9 hierarchy (SIMPLE MODE: 1 ICD-9 code)...")
         
-        # Get unique ICD9 codes from diagnoses
-        icd9_codes = set(self.diagnoses_icd['icd9_code'].dropna().unique())
+        # Get ICD9 codes with frequency
+        icd9_counts = Counter(self.diagnoses_icd['icd9_code'].dropna())
+        
+        # Select top 1 most frequent ICD9 code
+        if len(icd9_counts) == 0:
+            print("No ICD9 codes found, skipping ICD9 hierarchy")
+            return
+        
+        top_icd9_code = icd9_counts.most_common(1)[0][0]
+        print(f"  Selected ICD-9 code: {top_icd9_code} (frequency: {icd9_counts[top_icd9_code]})")
         
         # Normalize ICD9 codes (handle both with/without dots)
         def normalize_icd9(code, keep_format=False):
@@ -159,34 +172,50 @@ class MIMIC_KG_Builder:
                 # Return without dot (for hierarchy building)
                 return code_str_no_dot
         
-        # Build hierarchy based on ICD9 prefix structure
-        # ICD9 codes have hierarchical structure: 3-digit -> 4-digit -> 5-digit
+        # Build hierarchy for selected ICD9 code only
+        normalized = normalize_icd9(top_icd9_code)
+        if not normalized or len(normalized) < 3:
+            print("  Invalid ICD9 code format, skipping")
+            return
+        
+        # Add all prefix levels for this code
         icd9_nodes = set()
         icd9_edges = []
         
-        for code in icd9_codes:
-            normalized = normalize_icd9(code)
-            if normalized and len(normalized) >= 3:
-                # Add all prefix levels
-                for i in range(3, len(normalized) + 1):
-                    prefix = normalized[:i]
-                    icd9_nodes.add(prefix)
-                    # Add edge to parent (if exists)
-                    if i > 3:
-                        parent = normalized[:i-1]
-                        if parent in icd9_nodes:
-                            icd9_edges.append((parent, prefix))
+        for i in range(3, len(normalized) + 1):
+            prefix = normalized[:i]
+            icd9_nodes.add(prefix)
+            # Add edge to parent (if exists)
+            if i > 3:
+                parent = normalized[:i-1]
+                if parent in icd9_nodes:
+                    icd9_edges.append((parent, prefix))
         
         # Add root node
         root_icd = 'ICD9_ROOT'
-        # Optional: limit ICD hierarchy for super tiny KG
-        # icd9_nodes = set(list(icd9_nodes)[:30])
-
-        icd9_nodes = set(list(icd9_nodes)[:1])
-
-        for node in icd9_nodes:
+        
+        # Rebuild edges cho selected nodes, đảm bảo hierarchy đúng
+        icd9_edges = []
+        for node in sorted(icd9_nodes, key=lambda x: len(x)):  # Xử lý từ ngắn đến dài
             if len(node) == 3:  # Top-level 3-digit codes
                 icd9_edges.append((root_icd, node))
+            elif len(node) > 3:
+                # Tìm parent node trực tiếp (bỏ 1 ký tự cuối)
+                parent = node[:-1]
+                if parent in icd9_nodes:
+                    icd9_edges.append((parent, node))
+                else:
+                    # Tìm parent gần nhất
+                    found_parent = False
+                    for i in range(len(node) - 1, 2, -1):  # Từ độ dài hiện tại về 3
+                        parent = node[:i]
+                        if parent in icd9_nodes:
+                            icd9_edges.append((parent, node))
+                            found_parent = True
+                            break
+                    if not found_parent:
+                        # Nếu không tìm thấy parent, kết nối với root
+                        icd9_edges.append((root_icd, node))
         
         # Add nodes and edges to graph
         self.G.add_node(root_icd, type='ICD9', level=0)
@@ -195,23 +224,25 @@ class MIMIC_KG_Builder:
         for parent, child in icd9_edges:
             self.G.add_edge(parent, child, edge_type='hierarchical')
         
-        # Store vocabulary (only leaf nodes from actual diagnoses)
+        # Store vocabulary (only the selected ICD9 code)
         # Keep original format for vocab (with dots if present)
         self.vocab_icd = []
-        for c in icd9_codes:
-            normalized = normalize_icd9(c, keep_format=False)
-            if normalized and normalized in icd9_nodes:
-                # Store in format that matches training data
-                # If original had dot, keep it; otherwise use normalized
-                orig_str = str(c).strip()
-                if '.' in orig_str:
-                    self.vocab_icd.append(orig_str)
-                else:
-                    self.vocab_icd.append(normalized)
+        orig_str = str(top_icd9_code).strip()
+        if '.' in orig_str:
+            self.vocab_icd.append(orig_str)
+        else:
+            self.vocab_icd.append(normalized)
         self.vocab_icd = sorted(list(set(self.vocab_icd)))
         
         print(f"ICD9 hierarchy: {len(icd9_nodes)} nodes, {len(icd9_edges)} edges")
         print(f"ICD9 vocabulary size: {len(self.vocab_icd)}")
+        # Log chi tiết về hierarchy
+        level_dist = {}
+        for node in icd9_nodes:
+            level = len(node)
+            level_dist[level] = level_dist.get(level, 0) + 1
+        print(f"  ICD9 nodes by level: {level_dist}")
+        print(f"  ICD9 hierarchical edges: {len(icd9_edges)}")
     
     def build_cpt_hierarchy(self):
         """Build CPT procedure hierarchy"""
@@ -270,12 +301,20 @@ class MIMIC_KG_Builder:
         print(f"CPT vocabulary size: {len(self.vocab_cpt)}")
     
     def extract_drugs_and_map_to_atc(self):
-        """Extract drugs from PRESCRIPTIONS and attempt ATC mapping"""
-        print("Extracting drugs and mapping to ATC...")
+        """Extract drugs from PRESCRIPTIONS and attempt ATC mapping - SIMPLE MODE: top 5 ATC codes"""
+        print("Extracting drugs and mapping to ATC (SIMPLE MODE: top 5 ATC codes)...")
         
-        # Get unique drugs
-        # Use drug_name_generic or gsn (Generic Sequence Number) if available
-        drugs = self.prescriptions['drug_name_generic'].dropna().unique()
+        # Get drugs with frequency
+        drug_counts = Counter(self.prescriptions['drug_name_generic'].dropna())
+        
+        if len(drug_counts) == 0:
+            print("No drugs found, skipping ATC hierarchy")
+            return
+        
+        # Select top 5 most frequent drugs
+        top_drugs = [drug for drug, count in drug_counts.most_common(5)]
+        print(f"  Selected top 5 drugs: {top_drugs}")
+        print(f"  Frequencies: {[drug_counts[drug] for drug in top_drugs]}")
         
         # For now, we'll create a simple mapping
         # In production, you would use RxNorm API or ATC mapping file
@@ -286,7 +325,7 @@ class MIMIC_KG_Builder:
         
         # Simple heuristic: create ATC-like codes from drug names
         # This is a placeholder - in real scenario, use proper ATC mapping
-        for drug in drugs:
+        for drug in top_drugs:
             if pd.isna(drug):
                 continue
             drug_str = str(drug).strip().upper()
@@ -338,11 +377,20 @@ class MIMIC_KG_Builder:
         print("Note: Using placeholder ATC codes. For production, use proper RxNorm->ATC mapping.")
     
     def extract_lab_codes(self):
-        """Extract lab item codes"""
-        print("Extracting lab codes...")
+        """Extract lab item codes - SIMPLE MODE: top 10 lab codes"""
+        print("Extracting lab codes (SIMPLE MODE: top 10 lab codes)...")
         
-        # Get unique lab itemids
-        lab_itemids = set(self.lab_events['itemid'].dropna().unique())
+        # Get lab itemids with frequency
+        lab_counts = Counter(self.lab_events['itemid'].dropna())
+        
+        if len(lab_counts) == 0:
+            print("No lab codes found, skipping lab hierarchy")
+            return
+        
+        # Select top 10 most frequent lab codes
+        top_labs = [itemid for itemid, count in lab_counts.most_common(10)]
+        print(f"  Selected top 10 lab codes: {top_labs}")
+        print(f"  Frequencies: {[lab_counts[itemid] for itemid in top_labs]}")
         
         root_lab = 'LAB_ROOT'
         self.G.add_node(root_lab, type='LAB', level=0)
@@ -350,12 +398,12 @@ class MIMIC_KG_Builder:
         lab_nodes = set([root_lab])
         lab_edges = []
         
-        # Group labs by category from D_LABITEMS
+        # Group labs by category from D_LABITEMS (only for selected labs)
         lab_categories = {}
         for _, row in self.d_labitems.iterrows():
             itemid = row['itemid']
-            category = str(row.get('category', 'UNKNOWN'))
-            if itemid in lab_itemids:
+            if itemid in top_labs:
+                category = str(row.get('category', 'UNKNOWN'))
                 lab_categories[itemid] = category
                 lab_node = str(itemid)
                 lab_nodes.add(lab_node)
@@ -379,7 +427,7 @@ class MIMIC_KG_Builder:
         for parent, child in lab_edges:
             self.G.add_edge(parent, child, edge_type='hierarchical')
         
-        self.vocab_lab = sorted([str(itemid) for itemid in lab_itemids])
+        self.vocab_lab = sorted([str(itemid) for itemid in top_labs])
         
         print(f"Lab hierarchy: {len(lab_nodes)} nodes, {len(lab_edges)} edges")
         print(f"Lab vocabulary size: {len(self.vocab_lab)}")
@@ -463,7 +511,11 @@ class MIMIC_KG_Builder:
         cooccurrence_counts = Counter()
         
         print("  Processing admissions for co-occurrence...")
-        hadm_list = list(hadm_to_icd.keys())[:1]
+        # Tăng số admissions được xử lý để có đủ co-occurrence patterns
+        # Nhưng vẫn giữ nhỏ để KG không quá lớn
+        MAX_ADMISSIONS = 10  # Tăng từ 1 lên 10
+        hadm_list = list(hadm_to_icd.keys())[:MAX_ADMISSIONS]
+        print(f"  Processing {len(hadm_list)} admissions for co-occurrence edges")
         for hadm_id in tqdm(hadm_list, desc="  Admissions"):
             # ICD9 <-> ATC
             for icd in hadm_to_icd[hadm_id]:
@@ -507,6 +559,64 @@ class MIMIC_KG_Builder:
         
         print(f"Co-occurrence edges: {added_edges} edges added")
         print(f"  Total co-occurrence pairs: {len(cooccurrence_counts)}")
+    
+    def create_ego_graph(self):
+        """Create ego-graph from selected nodes (1 ICD-9, top 10 lab, top 5 ATC)"""
+        print("Creating ego-graph from selected nodes...")
+        
+        # Get selected nodes (vocab nodes)
+        selected_nodes = set()
+        
+        # Helper function to normalize ICD for graph matching
+        def normalize_icd_for_graph(icd):
+            """Normalize ICD code to match graph node format"""
+            if pd.isna(icd):
+                return None
+            code_str = str(icd).strip().replace('.', '')
+            return code_str if code_str else None
+        
+        # Add ICD-9 nodes (including hierarchy)
+        for icd in self.vocab_icd:
+            # Normalize to match graph nodes
+            icd_normalized = normalize_icd_for_graph(icd)
+            if icd_normalized and icd_normalized in self.G.nodes():
+                selected_nodes.add(icd_normalized)
+                # Add all neighbors (hierarchy nodes)
+                selected_nodes.update(self.G.neighbors(icd_normalized))
+        
+        # Add Lab nodes (including hierarchy)
+        for lab in self.vocab_lab:
+            lab_str = str(lab)
+            if lab_str in self.G.nodes():
+                selected_nodes.add(lab_str)
+                # Add all neighbors (hierarchy nodes)
+                selected_nodes.update(self.G.neighbors(lab_str))
+        
+        # Add ATC nodes (including hierarchy)
+        for atc in self.vocab_atc:
+            if atc in self.G.nodes():
+                selected_nodes.add(atc)
+                # Add all neighbors (hierarchy nodes)
+                selected_nodes.update(self.G.neighbors(atc))
+        
+        # Also ensure root nodes are included
+        root_nodes = ['ICD9_ROOT', 'LAB_ROOT', 'ATC_ROOT', 'CPT_ROOT']
+        for root in root_nodes:
+            if root in self.G.nodes():
+                selected_nodes.add(root)
+        
+        # Create ego-graph
+        ego_graph = self.G.subgraph(selected_nodes).copy()
+        
+        print(f"  Original graph: {self.G.number_of_nodes()} nodes, {self.G.number_of_edges()} edges")
+        print(f"  Ego-graph: {ego_graph.number_of_nodes()} nodes, {ego_graph.number_of_edges()} edges")
+        
+        # Replace original graph with ego-graph
+        self.G = ego_graph
+        
+        # Log node types in ego-graph
+        node_types = Counter([self.G.nodes[node].get('type', 'UNKNOWN') for node in self.G.nodes()])
+        print(f"  Node types in ego-graph: {dict(node_types)}")
     
     def augment_graph(self):
         """Add augmented edges (skip connections in hierarchy)"""
@@ -725,17 +835,50 @@ class MIMIC_KG_Builder:
         self.extract_drugs_and_map_to_atc()
         self.extract_lab_codes()
         
+        # Log chi tiết về edge types
+        edge_types = {}
+        for u, v, data in self.G.edges(data=True):
+            edge_type = data.get('edge_type', 'unknown')
+            edge_types[edge_type] = edge_types.get(edge_type, 0) + 1
+        
         print(f"\nGraph after hierarchies: {self.G.number_of_nodes()} nodes, {self.G.number_of_edges()} edges")
+        print(f"  Edge types: {edge_types}")
         
         # Step 3: Build co-occurrence edges
         self.build_cooccurrence_edges(min_cooccurrence=1)
         
+        # Log chi tiết về edge types sau co-occurrence
+        edge_types = {}
+        for u, v, data in self.G.edges(data=True):
+            edge_type = data.get('edge_type', 'unknown')
+            edge_types[edge_type] = edge_types.get(edge_type, 0) + 1
+        
         print(f"\nGraph after co-occurrence: {self.G.number_of_nodes()} nodes, {self.G.number_of_edges()} edges")
+        print(f"  Edge types: {edge_types}")
+        
+        # Step 3.5: Create ego-graph from selected nodes (SIMPLE MODE)
+        self.create_ego_graph()
+        
+        # Log chi tiết về edge types sau ego-graph
+        edge_types = {}
+        for u, v, data in self.G.edges(data=True):
+            edge_type = data.get('edge_type', 'unknown')
+            edge_types[edge_type] = edge_types.get(edge_type, 0) + 1
+        
+        print(f"\nGraph after ego-graph creation: {self.G.number_of_nodes()} nodes, {self.G.number_of_edges()} edges")
+        print(f"  Edge types: {edge_types}")
         
         # Step 4: Augment graph
         self.augment_graph()
         
+        # Log chi tiết về edge types sau augmentation
+        edge_types = {}
+        for u, v, data in self.G.edges(data=True):
+            edge_type = data.get('edge_type', 'unknown')
+            edge_types[edge_type] = edge_types.get(edge_type, 0) + 1
+        
         print(f"\nGraph after augmentation: {self.G.number_of_nodes()} nodes, {self.G.number_of_edges()} edges")
+        print(f"  Edge types: {edge_types}")
         
         # Step 5: Generate embeddings
         embeddings = self.generate_embeddings()
