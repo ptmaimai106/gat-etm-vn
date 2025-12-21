@@ -95,6 +95,97 @@ class GraphVisualizer:
             for vocab_type, vocab_list in self.vocab_info.items():
                 print(f"  {vocab_type.upper()}: {len(vocab_list)}")
     
+    def get_relationships(self):
+        """Extract relationships between different node types"""
+        relationships = {
+            'ICD9-ATC': [],
+            'ICD9-LAB': [],
+            'ICD9-CPT': [],
+            'ATC-LAB': [],
+            'ATC-CPT': [],
+            'LAB-CPT': [],
+            'ICD9-ICD9': []
+        }
+        
+        # Helper to get node code/name
+        def get_node_display(node):
+            # Try to get from graphnode_vocab first
+            if self.graphnode_vocab:
+                if node in self.graphnode_vocab:
+                    return str(self.graphnode_vocab[node])
+            # Then try from node attribute
+            code = self.G.nodes[node].get('code', None)
+            if code:
+                return str(code)
+            return str(node)
+        
+        for u, v, data in self.G.edges(data=True):
+            u_type = self.G.nodes[u].get('type', 'UNKNOWN')
+            v_type = self.G.nodes[v].get('type', 'UNKNOWN')
+            edge_type = data.get('edge_type', 'unknown')
+            weight = data.get('weight', 1.0)
+            
+            # Skip hierarchical edges (only show co-occurrence and augmented)
+            if edge_type == 'hierarchical':
+                continue
+            
+            # Get node display names
+            u_display = get_node_display(u)
+            v_display = get_node_display(v)
+            
+            # Sort types for consistent key
+            types = sorted([u_type, v_type])
+            key = f"{types[0]}-{types[1]}"
+            
+            if key in relationships:
+                relationships[key].append({
+                    'node1': u_display,
+                    'node2': v_display,
+                    'type1': u_type,
+                    'type2': v_type,
+                    'edge_type': edge_type,
+                    'weight': weight
+                })
+            elif u_type == 'ICD9' and v_type == 'ICD9':
+                relationships['ICD9-ICD9'].append({
+                    'node1': u_display,
+                    'node2': v_display,
+                    'type1': u_type,
+                    'type2': v_type,
+                    'edge_type': edge_type,
+                    'weight': weight
+                })
+        
+        return relationships
+    
+    def print_relationships(self):
+        """Print relationships between node types"""
+        print("\n" + "=" * 80)
+        print("Node Relationships (for Manual Inspection)")
+        print("=" * 80)
+        
+        relationships = self.get_relationships()
+        
+        for rel_type, rels in relationships.items():
+            if len(rels) > 0:
+                print(f"\n{rel_type} Relationships ({len(rels)} connections):")
+                print("-" * 80)
+                # Sort by weight (descending) if available
+                rels_sorted = sorted(rels, key=lambda x: x.get('weight', 0), reverse=True)
+                for i, rel in enumerate(rels_sorted[:20], 1):  # Show top 20
+                    weight_str = f" (weight: {rel['weight']:.2f})" if rel.get('weight', 0) > 1 else ""
+                    print(f"  {i}. {rel['node1']} <-> {rel['node2']}{weight_str} [{rel['edge_type']}]")
+                if len(rels) > 20:
+                    print(f"  ... and {len(rels) - 20} more")
+        
+        # Summary by type
+        print("\n" + "=" * 80)
+        print("Relationship Summary")
+        print("=" * 80)
+        for rel_type, rels in relationships.items():
+            if len(rels) > 0:
+                print(f"  {rel_type}: {len(rels)} connections")
+    
     def create_subgraph(self, max_nodes=500, strategy='random'):
         """
         Create a subgraph for visualization
@@ -141,7 +232,7 @@ class GraphVisualizer:
     
     def visualize_graph(self, output_file='graph_visualization.png', 
                        max_nodes=500, layout='spring', figsize=(20, 16),
-                       node_size=50, font_size=8, show_labels=False):
+                       node_size=50, font_size=8, show_labels=True):
         """
         Visualize the graph
         
@@ -253,25 +344,86 @@ class GraphVisualizer:
         nx.draw_networkx_nodes(G_viz, pos, node_color=node_colors, 
                              node_size=node_size, alpha=0.8, ax=ax)
         
-        # Draw labels if requested
-        if show_labels:
-            # Only show labels for important nodes (roots or high degree)
-            labels = {}
-            for node in G_viz.nodes():
-                node_type = G_viz.nodes[node].get('type', '')
-                level = G_viz.nodes[node].get('level', 999)
-                degree = G_viz.degree(node)
-                
-                # Show label for root nodes or high-degree nodes
-                if level == 0 or degree > 5:
-                    code = G_viz.nodes[node].get('code', str(node))
-                    if isinstance(code, str) and len(code) < 20:
-                        labels[node] = code
-                    else:
-                        labels[node] = str(node)[:15]
+        # Draw labels - always show for vocab nodes (ICD, ATC, LAB, CPT)
+        labels = {}
+        label_positions = {}
+        
+        # Helper to get node display name
+        def get_node_display(node):
+            # Try to get from graphnode_vocab first
+            if self.graphnode_vocab:
+                if node in self.graphnode_vocab:
+                    return str(self.graphnode_vocab[node])
+            # Then try from node attribute
+            code = G_viz.nodes[node].get('code', None)
+            if code:
+                return str(code)
+            return str(node)
+        
+        # Helper to normalize for matching
+        def normalize_for_match(s):
+            return str(s).strip().replace('.', '').upper()
+        
+        # Show labels for vocab nodes (leaf nodes that are in vocab)
+        vocab_nodes = set()
+        vocab_nodes_normalized = set()
+        if self.vocab_info:
+            # Collect vocab nodes
+            for vocab_type, vocab_list in self.vocab_info.items():
+                for v in vocab_list:
+                    vocab_nodes.add(str(v))
+                    vocab_nodes_normalized.add(normalize_for_match(v))
+        
+        for node in G_viz.nodes():
+            node_type = G_viz.nodes[node].get('type', '')
+            level = G_viz.nodes[node].get('level', 999)
+            degree = G_viz.degree(node)
+            node_display = get_node_display(node)
             
+            # Always show labels for:
+            # 1. Root nodes (level 0)
+            # 2. Vocab nodes (leaf nodes in vocabulary)
+            # 3. High-degree nodes (degree > 3)
+            should_label = False
+            label_text = ""
+            
+            if level == 0:
+                should_label = True
+                label_text = str(node)[:20]  # Root node name
+            else:
+                # Check if node matches vocab (normalized)
+                node_normalized = normalize_for_match(node)
+                node_display_normalized = normalize_for_match(node_display)
+                
+                # Check if node or its display matches any vocab
+                if (node_normalized in vocab_nodes_normalized or 
+                    node_display_normalized in vocab_nodes_normalized or
+                    any(node_normalized.endswith(norm) or norm.endswith(node_normalized) 
+                        for norm in vocab_nodes_normalized) or
+                    any(node_display_normalized.endswith(norm) or norm.endswith(node_display_normalized) 
+                        for norm in vocab_nodes_normalized)):
+                    should_label = True
+                    # Try to find matching vocab item
+                    for vocab_item in vocab_nodes:
+                        if normalize_for_match(vocab_item) == node_normalized or \
+                           normalize_for_match(vocab_item) == node_display_normalized:
+                            label_text = str(vocab_item)[:20]
+                            break
+                    if not label_text:
+                        label_text = node_display[:20]
+            elif degree > 3:
+                should_label = True
+                label_text = node_display[:20]
+            
+            if should_label and label_text:
+                labels[node] = label_text
+                label_positions[node] = pos[node]
+        
+        if labels:
             nx.draw_networkx_labels(G_viz, pos, labels, font_size=font_size, 
-                                  font_weight='bold', ax=ax)
+                                  font_weight='bold', ax=ax,
+                                  bbox=dict(boxstyle='round,pad=0.3', facecolor='white', 
+                                          edgecolor='none', alpha=0.7))
         
         # Create legend
         legend_elements = []
@@ -296,6 +448,37 @@ class GraphVisualizer:
                                                      linestyle=style, linewidth=2))
         
         ax.legend(handles=legend_elements, loc='upper left', fontsize=10, framealpha=0.9)
+        
+        # Add relationships summary text box
+        relationships = self.get_relationships()
+        if any(len(rels) > 0 for rels in relationships.values()):
+            # Build summary text
+            summary_lines = ["Relationships Summary:", ""]
+            for rel_type, rels in relationships.items():
+                if len(rels) > 0:
+                    # Get top 3 most weighted connections
+                    rels_sorted = sorted(rels, key=lambda x: x.get('weight', 0), reverse=True)
+                    top_rels = rels_sorted[:3]
+                    summary_lines.append(f"{rel_type}: {len(rels)} connections")
+                    for i, rel in enumerate(top_rels, 1):
+                        node1_short = rel['node1'][:15] if len(rel['node1']) > 15 else rel['node1']
+                        node2_short = rel['node2'][:15] if len(rel['node2']) > 15 else rel['node2']
+                        summary_lines.append(f"  {i}. {node1_short} <-> {node2_short}")
+                    if len(rels) > 3:
+                        summary_lines.append(f"  ... and {len(rels) - 3} more")
+                    summary_lines.append("")
+            
+            summary_text = "\n".join(summary_lines)
+            
+            # Add text box in lower right corner
+            ax.text(0.98, 0.02, summary_text, 
+                   transform=ax.transAxes,
+                   fontsize=8,
+                   verticalalignment='bottom',
+                   horizontalalignment='right',
+                   bbox=dict(boxstyle='round,pad=0.5', facecolor='white', 
+                           edgecolor='gray', alpha=0.9),
+                   family='monospace')
         
         ax.set_title(f'Knowledge Graph Visualization\n'
                     f'{G_viz.number_of_nodes()} nodes, {G_viz.number_of_edges()} edges', 
@@ -411,6 +594,9 @@ def main():
     
     # Print statistics
     visualizer.print_statistics()
+    
+    # Print relationships for manual inspection
+    visualizer.print_relationships()
     
     if args.stats_only:
         return
