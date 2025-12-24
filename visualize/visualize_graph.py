@@ -411,9 +411,9 @@ class GraphVisualizer:
                             break
                     if not label_text:
                         label_text = node_display[:20]
-            elif degree > 3:
-                should_label = True
-                label_text = node_display[:20]
+                elif degree > 3:
+                    should_label = True
+                    label_text = node_display[:20]
             
             if should_label and label_text:
                 labels[node] = label_text
