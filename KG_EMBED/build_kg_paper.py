@@ -209,18 +209,39 @@ class Paper_KG_Builder:
             print("  Loading from PRESCRIPTIONS.csv...")
             prescriptions_df = pd.read_csv(prescriptions_file, nrows=10000)  # Sample for demo
             
+            # Find drug column (handle different column name variations)
+            # Based on PRESCRIPTIONS.csv structure: 
+            #   - drug_name_generic (preferred - generic name)
+            #   - drug_name_poe (POE name)
+            #   - drug (drug name)
+            drug_column = None
+            for col in ['drug_name_generic', 'drug_name_poe', 'drug', 'drug_name', 'DRUG_NAME_GENERIC', 'DRUG_NAME_POE', 'DRUG']:
+                if col in prescriptions_df.columns:
+                    drug_column = col
+                    break
+            
+            if drug_column is None:
+                print("  WARNING: Cannot find drug name column. Available columns:")
+                print(f"    {list(prescriptions_df.columns)}")
+                print("  Using sample ATC codes instead")
+                self.vocab_atc = [f"ATC_{i:05d}" for i in range(100)]  # Placeholder
+                return self.vocab_atc
+            
+            print(f"  Using column: {drug_column}")
+            
             # Extract drug names (would need RxNorm → ATC mapping in production)
             # For now, create placeholder ATC codes
-            drug_names = prescriptions_df['DRUG'].dropna().unique()[:100]  # Limit for demo
+            drug_names = prescriptions_df[drug_column].dropna().unique()[:100]  # Limit for demo
             
             # Create placeholder ATC codes (hash-based, similar to build_kg_mimic.py)
             # In production, use RxNorm API → WHO ATC mapping
             self.vocab_atc = []
             for drug in drug_names:
-                # Placeholder: create ATC-like code from hash
-                atc_code = f"DRUG_{hash(str(drug)) % 100000}"
-                if atc_code not in self.vocab_atc:
-                    self.vocab_atc.append(atc_code)
+                if pd.notna(drug):
+                    # Placeholder: create ATC-like code from hash
+                    atc_code = f"DRUG_{abs(hash(str(drug))) % 100000:05d}"
+                    if atc_code not in self.vocab_atc:
+                        self.vocab_atc.append(atc_code)
             
             print(f"  Loaded {len(self.vocab_atc)} ATC codes (placeholder)")
             print("  NOTE: For production, use RxNorm API → WHO ATC mapping")
