@@ -531,23 +531,31 @@ class GraphVisualizer:
         # Create legend with shapes
         legend_elements = []
         
-        # Node type legend with shapes
-        shape_map_legend = {
-            'ICD9': mpatches.Rectangle((0, 0), 1, 1, facecolor=node_type_colors['ICD9'], edgecolor='black', linewidth=1),
-            'CPT': mpatches.Circle((0.5, 0.5), 0.5, facecolor=node_type_colors['CPT'], edgecolor='black', linewidth=1),
-            'ATC': mpatches.RegularPolygon((0.5, 0.5), 3, 0.5, facecolor=node_type_colors['ATC'], edgecolor='black', linewidth=1),
-            'LAB': mpatches.RegularPolygon((0.5, 0.5), 4, 0.5, orientation=np.pi/4, facecolor=node_type_colors['LAB'], edgecolor='black', linewidth=1),
-            'UNKNOWN': mpatches.Circle((0.5, 0.5), 0.5, facecolor=node_type_colors['UNKNOWN'], edgecolor='black', linewidth=1)
-        }
-        
+        # Node type legend with shapes - using correct matplotlib patch constructors
         for node_type, color in node_type_colors.items():
             if any(G_viz.nodes[n].get('type', 'UNKNOWN') == node_type for n in G_viz.nodes()):
-                if node_type in shape_map_legend:
-                    patch = shape_map_legend[node_type]
+                if node_type == 'ICD9':
+                    patch = mpatches.Rectangle((0, 0), 1, 1, facecolor=color, edgecolor='black', linewidth=1)
+                    patch.set_label(f'Node: {node_type}')
+                    legend_elements.append(patch)
+                elif node_type == 'CPT':
+                    patch = mpatches.Circle((0.5, 0.5), 0.5, facecolor=color, edgecolor='black', linewidth=1)
+                    patch.set_label(f'Node: {node_type}')
+                    legend_elements.append(patch)
+                elif node_type == 'ATC':
+                    # RegularPolygon: (xy, numVertices, radius=5, orientation=0, **kwargs)
+                    patch = mpatches.RegularPolygon((0.5, 0.5), 3, radius=0.5, facecolor=color, edgecolor='black', linewidth=1)
+                    patch.set_label(f'Node: {node_type}')
+                    legend_elements.append(patch)
+                elif node_type == 'LAB':
+                    # RegularPolygon for diamond: 4 vertices with 45-degree rotation
+                    patch = mpatches.RegularPolygon((0.5, 0.5), 4, radius=0.5, orientation=np.pi/4, facecolor=color, edgecolor='black', linewidth=1)
                     patch.set_label(f'Node: {node_type}')
                     legend_elements.append(patch)
                 else:
-                    legend_elements.append(mpatches.Patch(color=color, label=f'Node: {node_type}', edgecolor='black', linewidth=1))
+                    patch = mpatches.Circle((0.5, 0.5), 0.5, facecolor=color, edgecolor='black', linewidth=1)
+                    patch.set_label(f'Node: {node_type}')
+                    legend_elements.append(patch)
         
         # Edge type legend
         for edge_type, color in edge_type_colors.items():
