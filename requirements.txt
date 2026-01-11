@@ -28,3 +28,10 @@ pyarrow
 # Visualization (optional)
 matplotlib
 seaborn
+
+networkx
+pandas
+numpy 
+node2vec
+tqdm
+
