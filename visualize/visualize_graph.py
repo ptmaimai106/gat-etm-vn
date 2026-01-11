@@ -107,17 +107,38 @@ class GraphVisualizer:
             'ICD9-ICD9': []
         }
         
-        # Helper to get node code/name
+        # Helper to get node code/name with prefix
         def get_node_display(node):
+            node_type = self.G.nodes[node].get('type', 'UNKNOWN')
+            
             # Try to get from graphnode_vocab first
+            code_str = None
             if self.graphnode_vocab:
                 if node in self.graphnode_vocab:
-                    return str(self.graphnode_vocab[node])
+                    code_str = str(self.graphnode_vocab[node])
             # Then try from node attribute
-            code = self.G.nodes[node].get('code', None)
-            if code:
-                return str(code)
-            return str(node)
+            if not code_str:
+                code = self.G.nodes[node].get('code', None)
+                if code:
+                    code_str = str(code)
+                else:
+                    code_str = str(node)
+            
+            # Add prefix based on node type for better identification
+            if node_type == 'ICD9':
+                if not code_str.startswith('ICD') and not code_str.endswith('_ROOT'):
+                    return f'ICD_{code_str}'
+            elif node_type == 'LAB':
+                if not code_str.startswith('LAB') and not code_str.endswith('_ROOT'):
+                    return f'LAB_{code_str}'
+            elif node_type == 'CPT':
+                if not code_str.startswith('CPT') and not code_str.startswith('DRUG'):
+                    return f'CPT_{code_str}'
+            elif node_type == 'ATC':
+                if not code_str.startswith('DRUG') and not code_str.startswith('ATC'):
+                    return f'ATC_{code_str}'
+            
+            return code_str
         
         for u, v, data in self.G.edges(data=True):
             u_type = self.G.nodes[u].get('type', 'UNKNOWN')
@@ -253,12 +274,12 @@ class GraphVisualizer:
         # Set up figure
         fig, ax = plt.subplots(figsize=figsize)
         
-        # Define colors for node types
+        # Define colors for node types - brighter and more distinct
         node_type_colors = {
-            'ICD9': '#FF6B6B',      # Red
-            'CPT': '#4ECDC4',       # Teal
-            'ATC': '#45B7D1',       # Blue
-            'LAB': '#FFA07A',       # Light salmon
+            'ICD9': '#E74C3C',      # Bright Red (more visible)
+            'CPT': '#1ABC9C',       # Bright Teal (more visible)
+            'ATC': '#3498DB',       # Bright Blue (more visible)
+            'LAB': '#E67E22',       # Bright Orange (more visible)
             'UNKNOWN': '#95A5A6'    # Gray
         }
         
@@ -270,11 +291,23 @@ class GraphVisualizer:
             'unknown': '#BDC3C7'            # Light gray
         }
         
-        # Get node colors
+        # Get node colors - brighter and more visible
         node_colors = []
+        node_shapes = []  # Different shapes for different node types
         for node in G_viz.nodes():
             node_type = G_viz.nodes[node].get('type', 'UNKNOWN')
             node_colors.append(node_type_colors.get(node_type, node_type_colors['UNKNOWN']))
+            # Assign shapes: ICD9=square, CPT=circle, ATC=triangle, LAB=diamond
+            if node_type == 'ICD9':
+                node_shapes.append('s')  # square
+            elif node_type == 'CPT':
+                node_shapes.append('o')  # circle
+            elif node_type == 'ATC':
+                node_shapes.append('^')  # triangle
+            elif node_type == 'LAB':
+                node_shapes.append('D')  # diamond
+            else:
+                node_shapes.append('o')  # default circle
         
         # Get edge colors
         edge_colors = []
@@ -340,25 +373,91 @@ class GraphVisualizer:
                                      edge_color=color, style=style, 
                                      width=width, alpha=0.6, ax=ax)
         
-        # Draw nodes
-        nx.draw_networkx_nodes(G_viz, pos, node_color=node_colors, 
-                             node_size=node_size, alpha=0.8, ax=ax)
+        # Draw nodes with different shapes and brighter colors
+        # Group nodes by type to draw with different shapes
+        node_groups = {
+            'ICD9': {'nodes': [], 'pos': {}, 'colors': []},
+            'CPT': {'nodes': [], 'pos': {}, 'colors': []},
+            'ATC': {'nodes': [], 'pos': {}, 'colors': []},
+            'LAB': {'nodes': [], 'pos': {}, 'colors': []},
+            'UNKNOWN': {'nodes': [], 'pos': {}, 'colors': []}
+        }
+        
+        for i, node in enumerate(G_viz.nodes()):
+            node_type = G_viz.nodes[node].get('type', 'UNKNOWN')
+            if node_type in node_groups:
+                node_groups[node_type]['nodes'].append(node)
+                node_groups[node_type]['pos'][node] = pos[node]
+                node_groups[node_type]['colors'].append(node_colors[i])
+        
+        # Draw each node type with different shapes and brighter colors
+        # Note: NetworkX doesn't support different shapes per node, so we use scatter plot
+        import matplotlib.patches as mpatches
+        
+        shape_map = {
+            'ICD9': 's',  # square
+            'CPT': 'o',   # circle
+            'ATC': '^',   # triangle up
+            'LAB': 'D',   # diamond
+            'UNKNOWN': 'o'  # circle
+        }
+        
+        for node_type, group in node_groups.items():
+            if len(group['nodes']) > 0:
+                # Get positions and colors for this group
+                x_coords = [group['pos'][node][0] for node in group['nodes']]
+                y_coords = [group['pos'][node][1] for node in group['nodes']]
+                
+                # Draw nodes using scatter for different shapes
+                ax.scatter(x_coords, y_coords,
+                         s=node_size * 1.5,  # Larger size
+                         c=group['colors'],
+                         marker=shape_map[node_type],
+                         alpha=0.95,  # More opaque
+                         edgecolors='black',  # Black border for better visibility
+                         linewidths=1.0,
+                         zorder=3)  # Draw nodes on top
         
         # Draw labels - always show for vocab nodes (ICD, ATC, LAB, CPT)
         labels = {}
         label_positions = {}
         
-        # Helper to get node display name
+        # Helper to get node display name with prefix
         def get_node_display(node):
+            node_type = G_viz.nodes[node].get('type', 'UNKNOWN')
+            
             # Try to get from graphnode_vocab first
+            code_str = None
             if self.graphnode_vocab:
                 if node in self.graphnode_vocab:
-                    return str(self.graphnode_vocab[node])
+                    code_str = str(self.graphnode_vocab[node])
             # Then try from node attribute
-            code = G_viz.nodes[node].get('code', None)
-            if code:
-                return str(code)
-            return str(node)
+            if not code_str:
+                code = G_viz.nodes[node].get('code', None)
+                if code:
+                    code_str = str(code)
+                else:
+                    code_str = str(node)
+            
+            # Add prefix based on node type for better identification
+            if node_type == 'ICD9':
+                # Only add prefix if not already present and not a root node
+                if not code_str.startswith('ICD') and not code_str.endswith('_ROOT'):
+                    return f'ICD_{code_str}'
+            elif node_type == 'LAB':
+                # Only add prefix if not already present and not a root/category node
+                if not code_str.startswith('LAB') and not code_str.endswith('_ROOT'):
+                    return f'LAB_{code_str}'
+            elif node_type == 'CPT':
+                # Only add prefix if not already present
+                if not code_str.startswith('CPT') and not code_str.startswith('DRUG'):
+                    return f'CPT_{code_str}'
+            elif node_type == 'ATC':
+                # Keep DRUG_ prefix if present, otherwise add ATC_ prefix
+                if not code_str.startswith('DRUG') and not code_str.startswith('ATC'):
+                    return f'ATC_{code_str}'
+            
+            return code_str
         
         # Helper to normalize for matching
         def normalize_for_match(s):
@@ -420,18 +519,35 @@ class GraphVisualizer:
                 label_positions[node] = pos[node]
         
         if labels:
-            nx.draw_networkx_labels(G_viz, pos, labels, font_size=font_size, 
+            # Draw labels with better visibility
+            nx.draw_networkx_labels(G_viz, pos, labels, font_size=font_size + 1, 
                                   font_weight='bold', ax=ax,
-                                  bbox=dict(boxstyle='round,pad=0.3', facecolor='white', 
-                                          edgecolor='none', alpha=0.7))
+                                  bbox=dict(boxstyle='round,pad=0.4', 
+                                          facecolor='white', 
+                                          edgecolor='black',
+                                          linewidth=0.5,
+                                          alpha=0.9))  # More opaque background
         
-        # Create legend
+        # Create legend with shapes
         legend_elements = []
         
-        # Node type legend
+        # Node type legend with shapes
+        shape_map_legend = {
+            'ICD9': mpatches.Rectangle((0, 0), 1, 1, facecolor=node_type_colors['ICD9'], edgecolor='black', linewidth=1),
+            'CPT': mpatches.Circle((0.5, 0.5), 0.5, facecolor=node_type_colors['CPT'], edgecolor='black', linewidth=1),
+            'ATC': mpatches.RegularPolygon((0.5, 0.5), 3, 0.5, facecolor=node_type_colors['ATC'], edgecolor='black', linewidth=1),
+            'LAB': mpatches.RegularPolygon((0.5, 0.5), 4, 0.5, orientation=np.pi/4, facecolor=node_type_colors['LAB'], edgecolor='black', linewidth=1),
+            'UNKNOWN': mpatches.Circle((0.5, 0.5), 0.5, facecolor=node_type_colors['UNKNOWN'], edgecolor='black', linewidth=1)
+        }
+        
         for node_type, color in node_type_colors.items():
             if any(G_viz.nodes[n].get('type', 'UNKNOWN') == node_type for n in G_viz.nodes()):
-                legend_elements.append(mpatches.Patch(color=color, label=f'Node: {node_type}'))
+                if node_type in shape_map_legend:
+                    patch = shape_map_legend[node_type]
+                    patch.set_label(f'Node: {node_type}')
+                    legend_elements.append(patch)
+                else:
+                    legend_elements.append(mpatches.Patch(color=color, label=f'Node: {node_type}', edgecolor='black', linewidth=1))
         
         # Edge type legend
         for edge_type, color in edge_type_colors.items():
@@ -447,7 +563,8 @@ class GraphVisualizer:
                 legend_elements.append(mpatches.Patch(color=color, label=f'Edge: {edge_type}', 
                                                      linestyle=style, linewidth=2))
         
-        ax.legend(handles=legend_elements, loc='upper left', fontsize=10, framealpha=0.9)
+        ax.legend(handles=legend_elements, loc='upper left', fontsize=11, 
+                 framealpha=0.95, edgecolor='black', frameon=True)
         
         # Add relationships summary text box
         relationships = self.get_relationships()
@@ -470,14 +587,14 @@ class GraphVisualizer:
             
             summary_text = "\n".join(summary_lines)
             
-            # Add text box in lower right corner
+            # Add text box in lower right corner with better visibility
             ax.text(0.98, 0.02, summary_text, 
                    transform=ax.transAxes,
-                   fontsize=8,
+                   fontsize=9,
                    verticalalignment='bottom',
                    horizontalalignment='right',
-                   bbox=dict(boxstyle='round,pad=0.5', facecolor='white', 
-                           edgecolor='gray', alpha=0.9),
+                   bbox=dict(boxstyle='round,pad=0.6', facecolor='white', 
+                           edgecolor='black', linewidth=1, alpha=0.95),
                    family='monospace')
         
         ax.set_title(f'Knowledge Graph Visualization\n'
