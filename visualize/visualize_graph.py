@@ -15,7 +15,7 @@ import numpy as np
 import networkx as nx
 import matplotlib.pyplot as plt
 import matplotlib.patches as mpatches
-from collections import Counter
+from collections import Counter, defaultdict
 import argparse
 
 
@@ -94,6 +94,66 @@ class GraphVisualizer:
             print("\nVocabulary sizes:")
             for vocab_type, vocab_list in self.vocab_info.items():
                 print(f"  {vocab_type.upper()}: {len(vocab_list)}")
+    
+    def print_detailed_structure(self):
+        """
+        Print detailed graph structure for manual verification
+        Useful for small graphs (simple KG) to verify all connections
+        """
+        is_small_graph = self.G.number_of_nodes() <= 50
+        
+        if not is_small_graph:
+            print("\nGraph is too large for detailed structure printing.")
+            print("Use print_statistics() for summary instead.")
+            return
+        
+        print("\n" + "=" * 80)
+        print("Detailed Graph Structure (for Manual Verification)")
+        print("=" * 80)
+        
+        # Group nodes by type
+        nodes_by_type = defaultdict(list)
+        for node in self.G.nodes():
+            node_type = self.G.nodes[node].get('type', 'UNKNOWN')
+            nodes_by_type[node_type].append(node)
+        
+        # Print nodes
+        print("\nNodes by Type:")
+        for node_type, nodes in sorted(nodes_by_type.items()):
+            if len(nodes) > 0:
+                print(f"\n  {node_type} ({len(nodes)} nodes):")
+                for node in sorted(nodes):
+                    level = self.G.nodes[node].get('level', 999)
+                    code = self.G.nodes[node].get('code', None)
+                    degree = self.G.degree(node)
+                    print(f"    - {node}: level={level}, code={code}, degree={degree}")
+        
+        # Group edges by type
+        edges_by_type = defaultdict(list)
+        for u, v, data in self.G.edges(data=True):
+            edge_type = data.get('edge_type', 'unknown')
+            weight = data.get('weight', 1.0)
+            relation = data.get('relation', None)
+            
+            edge_info = {
+                'from': u,
+                'to': v,
+                'weight': weight,
+                'relation': relation
+            }
+            edges_by_type[edge_type].append(edge_info)
+        
+        # Print edges
+        print("\n\nEdges by Type:")
+        for edge_type, edges in sorted(edges_by_type.items()):
+            if len(edges) > 0:
+                print(f"\n  {edge_type.upper()} ({len(edges)} edges):")
+                for edge in edges[:20]:  # Limit to 20 for readability
+                    rel_str = f", relation={edge['relation']}" if edge['relation'] else ""
+                    weight_str = f", weight={edge['weight']:.3f}" if edge['weight'] != 1.0 else ""
+                    print(f"    - {edge['from']} <-> {edge['to']}{rel_str}{weight_str}")
+                if len(edges) > 20:
+                    print(f"    ... and {len(edges) - 20} more")
     
     def get_relationships(self):
         """Extract relationships between different node types"""
@@ -257,6 +317,22 @@ class GraphVisualizer:
         """
         Visualize the graph
         
+        Automatically adapts for small graphs (simple KG) vs large graphs (full KG):
+        - Small graphs (<=50 nodes): Shows all labels, larger nodes, more details
+        - Large graphs (>50 nodes): Shows selective labels, standard size
+        
+        Args:
+            output_file: Output image filename
+            max_nodes: Maximum nodes to visualize (if graph is too large)
+            layout: Layout algorithm ('spring', 'circular', 'kamada_kawai', 'hierarchical')
+            figsize: Figure size
+            node_size: Size of nodes (will be adjusted for small graphs)
+            font_size: Font size for labels (will be adjusted for small graphs)
+            show_labels: Whether to show node labels
+        """
+        """
+        Visualize the graph
+        
         Args:
             output_file: Output image filename
             max_nodes: Maximum nodes to visualize (if graph is too large)
@@ -268,8 +344,22 @@ class GraphVisualizer:
         """
         print(f"\nCreating visualization...")
         
-        # Create subgraph if needed
-        G_viz = self.create_subgraph(max_nodes=max_nodes, strategy='hierarchical')
+        # Check if this is a small graph (simple KG)
+        is_small_graph = self.G.number_of_nodes() <= 50
+        
+        # Adjust parameters for small graphs
+        if is_small_graph:
+            print("  Detected small graph (simple KG) - showing all nodes and labels")
+            # Don't create subgraph for small graphs
+            G_viz = self.G
+            # Increase node size and font size for small graphs
+            node_size = max(node_size * 2, 300)
+            font_size = max(font_size + 2, 10)
+            figsize = (16, 12)  # Smaller figure for small graphs
+        else:
+            print(f"  Detected large graph - creating subgraph with max {max_nodes} nodes")
+            # Create subgraph if needed
+            G_viz = self.create_subgraph(max_nodes=max_nodes, strategy='hierarchical')
         
         # Set up figure
         fig, ax = plt.subplots(figsize=figsize)
@@ -473,6 +563,10 @@ class GraphVisualizer:
                     vocab_nodes.add(str(v))
                     vocab_nodes_normalized.add(normalize_for_match(v))
         
+        # For small graphs (simple KG), show all labels
+        # For large graphs, show only important nodes
+        is_small_graph = G_viz.number_of_nodes() <= 50
+        
         for node in G_viz.nodes():
             node_type = G_viz.nodes[node].get('type', '')
             level = G_viz.nodes[node].get('level', 999)
@@ -483,10 +577,15 @@ class GraphVisualizer:
             # 1. Root nodes (level 0)
             # 2. Vocab nodes (leaf nodes in vocabulary)
             # 3. High-degree nodes (degree > 3)
+            # 4. ALL nodes if graph is small (simple KG)
             should_label = False
             label_text = ""
             
-            if level == 0:
+            if is_small_graph:
+                # For small graphs, show all labels
+                should_label = True
+                label_text = node_display[:20]
+            elif level == 0:
                 should_label = True
                 label_text = str(node)[:20]  # Root node name
             else:
@@ -579,18 +678,23 @@ class GraphVisualizer:
         if any(len(rels) > 0 for rels in relationships.values()):
             # Build summary text
             summary_lines = ["Relationships Summary:", ""]
+            
+            # For small graphs, show more details
+            is_small_graph = G_viz.number_of_nodes() <= 50
+            max_rels_to_show = 10 if is_small_graph else 3
+            
             for rel_type, rels in relationships.items():
                 if len(rels) > 0:
-                    # Get top 3 most weighted connections
+                    # Get top N most weighted connections
                     rels_sorted = sorted(rels, key=lambda x: x.get('weight', 0), reverse=True)
-                    top_rels = rels_sorted[:3]
+                    top_rels = rels_sorted[:max_rels_to_show]
                     summary_lines.append(f"{rel_type}: {len(rels)} connections")
                     for i, rel in enumerate(top_rels, 1):
                         node1_short = rel['node1'][:15] if len(rel['node1']) > 15 else rel['node1']
                         node2_short = rel['node2'][:15] if len(rel['node2']) > 15 else rel['node2']
                         summary_lines.append(f"  {i}. {node1_short} <-> {node2_short}")
-                    if len(rels) > 3:
-                        summary_lines.append(f"  ... and {len(rels) - 3} more")
+                    if len(rels) > max_rels_to_show:
+                        summary_lines.append(f"  ... and {len(rels) - max_rels_to_show} more")
                     summary_lines.append("")
             
             summary_text = "\n".join(summary_lines)
@@ -598,7 +702,7 @@ class GraphVisualizer:
             # Add text box in lower right corner with better visibility
             ax.text(0.98, 0.02, summary_text, 
                    transform=ax.transAxes,
-                   fontsize=9,
+                   fontsize=9 if not is_small_graph else 8,
                    verticalalignment='bottom',
                    horizontalalignment='right',
                    bbox=dict(boxstyle='round,pad=0.6', facecolor='white', 
@@ -719,6 +823,9 @@ def main():
     
     # Print statistics
     visualizer.print_statistics()
+    
+    # Print detailed structure for small graphs (simple KG) - for manual verification
+    visualizer.print_detailed_structure()
     
     # Print relationships for manual inspection
     visualizer.print_relationships()
