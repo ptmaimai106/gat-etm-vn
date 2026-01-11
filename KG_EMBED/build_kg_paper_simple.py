@@ -99,8 +99,22 @@ class Simple_Paper_KG_Builder:
         
         diagnoses_df = pd.read_csv(diagnoses_file)
         
+        # Find ICD code column (handle different column name variations)
+        icd_column = None
+        for col in ['ICD9_CODE', 'icd9_code', 'ICD_CODE', 'icd_code', 'ICD9', 'icd9']:
+            if col in diagnoses_df.columns:
+                icd_column = col
+                break
+        
+        if icd_column is None:
+            print(f"  ERROR: Cannot find ICD code column. Available columns:")
+            print(f"    {list(diagnoses_df.columns)}")
+            raise ValueError("Cannot find ICD code column in DIAGNOSES_ICD.csv")
+        
+        print(f"  Using column: {icd_column}")
+        
         # Get ICD code frequencies
-        icd_counts = diagnoses_df['ICD9_CODE'].value_counts()
+        icd_counts = diagnoses_df[icd_column].value_counts()
         
         # Select top N most frequent codes
         top_icd = icd_counts.head(self.num_icd).index.tolist()
@@ -386,11 +400,31 @@ class Simple_Paper_KG_Builder:
             if normalized:
                 selected_icd_normalized.add(normalized)
         
+        # Find HADM_ID column (handle different column name variations)
+        hadm_column = None
+        for col in ['HADM_ID', 'hadm_id', 'HADMID', 'hadmid']:
+            if col in diagnoses_df.columns:
+                hadm_column = col
+                break
+        
+        if hadm_column is None:
+            print("    WARNING: Cannot find HADM_ID column in DIAGNOSES_ICD.csv")
+            print(f"    Available columns: {list(diagnoses_df.columns)}")
+            return
+        
+        # Find ICD column (should already be found in load_icd_codes_from_mimic, but check again)
+        icd_column = None
+        for col in ['ICD9_CODE', 'icd9_code', 'ICD_CODE', 'icd_code', 'ICD9', 'icd9']:
+            if col in diagnoses_df.columns:
+                icd_column = col
+                break
+        
+        if icd_column is None:
+            print("    WARNING: Cannot find ICD code column in DIAGNOSES_ICD.csv")
+            return
+        
         # Group by HADM_ID
         hadm_to_icd = defaultdict(set)
-        hadm_column = 'HADM_ID' if 'HADM_ID' in diagnoses_df.columns else 'hadm_id'
-        icd_column = 'ICD9_CODE' if 'ICD9_CODE' in diagnoses_df.columns else 'icd9_code'
-        
         for _, row in diagnoses_df.iterrows():
             hadm_id = row[hadm_column]
             icd_code = row[icd_column]
@@ -401,7 +435,18 @@ class Simple_Paper_KG_Builder:
         
         # Group ATC by HADM_ID
         hadm_to_atc = defaultdict(set)
-        hadm_column_pres = 'HADM_ID' if 'HADM_ID' in prescriptions_df.columns else 'hadm_id'
+        # Find HADM_ID column in prescriptions
+        hadm_column_pres = None
+        for col in ['HADM_ID', 'hadm_id', 'HADMID', 'hadmid']:
+            if col in prescriptions_df.columns:
+                hadm_column_pres = col
+                break
+        
+        if hadm_column_pres is None:
+            print("    WARNING: Cannot find HADM_ID column in PRESCRIPTIONS.csv")
+            print(f"    Available columns: {list(prescriptions_df.columns)}")
+            return
+        
         drug_column = None
         for col in ['drug_name_generic', 'drug', 'drug_name', 'DRUG']:
             if col in prescriptions_df.columns:
@@ -425,6 +470,9 @@ class Simple_Paper_KG_Builder:
                         atc_code = drug_to_atc[drug_str]
                         if atc_code in self.vocab_atc:
                             hadm_to_atc[hadm_id].add(atc_code)
+        else:
+            print("    WARNING: Cannot find drug column in PRESCRIPTIONS.csv")
+            print(f"    Available columns: {list(prescriptions_df.columns)}")
         
         # Find co-occurrences
         common_admissions = set(hadm_to_icd.keys()) & set(hadm_to_atc.keys())

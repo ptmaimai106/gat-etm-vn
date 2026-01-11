@@ -100,8 +100,22 @@ class Paper_KG_Builder:
         
         diagnoses_df = pd.read_csv(diagnoses_file)
         
+        # Find ICD code column (handle different column name variations)
+        icd_column = None
+        for col in ['ICD9_CODE', 'icd9_code', 'ICD_CODE', 'icd_code', 'ICD9', 'icd9']:
+            if col in diagnoses_df.columns:
+                icd_column = col
+                break
+        
+        if icd_column is None:
+            print(f"  ERROR: Cannot find ICD code column. Available columns:")
+            print(f"    {list(diagnoses_df.columns)}")
+            raise ValueError("Cannot find ICD code column in DIAGNOSES_ICD.csv")
+        
+        print(f"  Using column: {icd_column}")
+        
         # Get unique ICD-9 codes (leaf nodes only for vocabulary)
-        unique_icd = diagnoses_df['ICD9_CODE'].dropna().unique()
+        unique_icd = diagnoses_df[icd_column].dropna().unique()
         self.vocab_icd = sorted([str(code).strip() for code in unique_icd if pd.notna(code)])
         
         print(f"Loaded {len(self.vocab_icd)} unique ICD-9 codes from MIMIC-III")
