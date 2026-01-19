@@ -199,11 +199,14 @@ else:
 # Load graph and embeddings from KG
 print(f"\nLoading graph and embeddings from {args.kg_embed_dir}...")
 
-# Find graph and embed files - exclude vocab files
+# Find graph and embed files
+# Exclude vocab mapping files: graphnode_vocab.pkl, vocab_info.pkl
+# But allow files with 'vocab' in the middle (e.g., icdatc_graph_*_renumbered_by_vocab.pkl)
+vocab_mapping_files = {'graphnode_vocab.pkl', 'vocab_info.pkl'}
 graph_files = [f for f in os.listdir(args.kg_embed_dir) 
-               if 'graph' in f and f.endswith('.pkl') and 'vocab' not in f]
+               if 'graph' in f and f.endswith('.pkl') and f not in vocab_mapping_files]
 embed_files = [f for f in os.listdir(args.kg_embed_dir) 
-               if 'embed' in f and f.endswith('.pkl') and 'vocab' not in f]
+               if 'embed' in f and f.endswith('.pkl') and f not in vocab_mapping_files]
 
 if len(graph_files) == 0 or len(embed_files) == 0:
     raise FileNotFoundError(f"Graph or embed files not found in {args.kg_embed_dir}")
