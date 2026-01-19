@@ -39,6 +39,12 @@ class NontemporalDataset(Dataset):
             self.bow = np.load(npy_file, allow_pickle=True).item()
             self.bow_1 = np.load(npy_file_1, allow_pickle=True).item()
             self.bow_2 = np.load(npy_file_2, allow_pickle=True).item()
+            # Store sizes for index mapping
+            self.bow_1_size = self.bow_1.shape[0]
+            self.bow_2_size = self.bow_2.shape[0]
+            # For document completion, we only evaluate on samples present in both bow_test_1 and bow_test_2
+            # Use the minimum size to ensure we can pair samples correctly
+            self.eval_size = min(self.bow_1_size, self.bow_2_size)
             # FIXME: 10-14 sparse tensor dataset
             self.bow_1 = csr2tensor(self.bow_1, device)
             self.bow_2 = csr2tensor(self.bow_2, device)
@@ -94,6 +100,9 @@ class NontemporalDataset(Dataset):
         self.bow = csr2tensor(self.bow, device).coalesce()
 
     def __len__(self):
+        # For test phase, only return size that can be evaluated (samples in both bow_test_1 and bow_test_2)
+        if self.phase == 'test':
+            return self.eval_size
         return self.N
     
     def __getitem__(self, idx):
@@ -105,9 +114,9 @@ class NontemporalDataset(Dataset):
         sample = {'Data': data}
 
         if self.phase == 'test':
-            # FIXME: 10-14 sparse tensor dataset
-            # data_1 = csr2tensor(self.bow_1[idx])
-            # data_2 = csr2tensor(self.bow_2[idx])
+            # For document completion task:
+            # Use same index for both bow_test_1 and bow_test_2
+            # Since __len__ returns min(bow_1_size, bow_2_size), idx is always valid for both
             data_1 = self.bow_1[idx]
             data_2 = self.bow_2[idx]
 
