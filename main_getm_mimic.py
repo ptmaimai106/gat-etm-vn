@@ -22,8 +22,10 @@ import torch
 import numpy as np
 import os, time
 import math
+import ast
 from tqdm import tqdm
 import pickle
+import networkx as nx
 from torch.utils.data import DataLoader
 from torch import nn, optim
 from utils import nearest_neighbors, get_topic_coherence, get_topic_diversity
@@ -130,17 +132,44 @@ metadata_path = os.path.join(args.data_path, args.meta_file + '.txt')
 if os.path.exists(metadata_path):
     print(f"Loading metadata from {metadata_path}...")
     try:
-        metadata = np.loadtxt(metadata_path, dtype=str)
-        print(metadata)
-        # Override code_types and vocab_size from metadata if exists
-        if len(metadata) >= 4:
-            args.code_types = eval(metadata[0]) if isinstance(metadata[0], str) else metadata[0]
-            vocab_size = eval(metadata[1]) if isinstance(metadata[1], str) else metadata[1]
-            args.vocab_size = [int(_) for _ in vocab_size]
+        # Read metadata file line by line and parse properly
+        with open(metadata_path, 'r') as f:
+            lines = [line.strip() for line in f.readlines() if line.strip()]
+        
+        if len(lines) >= 4:
+            # Parse each line - handle both string representations and actual lists
+            try:
+                args.code_types = ast.literal_eval(lines[0])
+            except:
+                # Fallback: try to parse manually if it's malformed
+                code_types_str = lines[0].strip("[]\"'")
+                args.code_types = [ct.strip(" \"'") for ct in code_types_str.split(',')]
+            
+            try:
+                vocab_size = ast.literal_eval(lines[1])
+                args.vocab_size = [int(_) for _ in vocab_size] if isinstance(vocab_size, list) else [int(vocab_size)]
+            except:
+                # Fallback: try to parse manually
+                vocab_str = lines[1].strip("[]")
+                args.vocab_size = [int(v.strip()) for v in vocab_str.split(',')]
+            
             args.vocab_cum = np.cumsum([0]+args.vocab_size)
-            train_embeddings = eval(metadata[2]) if isinstance(metadata[2], str) else metadata[2]
-            args.train_embeddings = [int(_) for _ in train_embeddings]
-            args.embedding = eval(metadata[3]) if isinstance(metadata[3], str) else metadata[3]
+            
+            try:
+                train_embeddings = ast.literal_eval(lines[2])
+                args.train_embeddings = [int(_) for _ in train_embeddings] if isinstance(train_embeddings, list) else [int(train_embeddings)]
+            except:
+                train_str = lines[2].strip("[]")
+                args.train_embeddings = [int(v.strip()) for v in train_str.split(',')]
+            
+            try:
+                args.embedding = ast.literal_eval(lines[3])
+                if isinstance(args.embedding, str):
+                    args.embedding = [args.embedding]
+            except:
+                embed_str = lines[3].strip("[]\"'")
+                args.embedding = [e.strip(" \"'") for e in embed_str.split(',')]
+            
             print("Metadata loaded successfully. Overriding code_types and vocab_size from metadata.")
         else:
             print("Metadata file exists but incomplete. Using defaults from KG vocab info.")
@@ -148,6 +177,8 @@ if os.path.exists(metadata_path):
             args.embedding = ['*'] * len(args.code_types)
     except Exception as e:
         print(f"Error loading metadata: {e}. Using defaults from KG vocab info.")
+        import traceback
+        traceback.print_exc()
         args.train_embeddings = [1] * len(args.code_types)
         args.embedding = ['*'] * len(args.code_types)
 else:
@@ -168,9 +199,11 @@ else:
 # Load graph and embeddings from KG
 print(f"\nLoading graph and embeddings from {args.kg_embed_dir}...")
 
-# Find graph and embed files
-graph_files = [f for f in os.listdir(args.kg_embed_dir) if 'graph' in f and f.endswith('.pkl')]
-embed_files = [f for f in os.listdir(args.kg_embed_dir) if 'embed' in f and f.endswith('.pkl')]
+# Find graph and embed files - exclude vocab files
+graph_files = [f for f in os.listdir(args.kg_embed_dir) 
+               if 'graph' in f and f.endswith('.pkl') and 'vocab' not in f]
+embed_files = [f for f in os.listdir(args.kg_embed_dir) 
+               if 'embed' in f and f.endswith('.pkl') and 'vocab' not in f]
 
 if len(graph_files) == 0 or len(embed_files) == 0:
     raise FileNotFoundError(f"Graph or embed files not found in {args.kg_embed_dir}")
@@ -202,7 +235,25 @@ print(f"Embed file: {args.graph_embed_path}")
 args.graph_embed = pickle.load(open(args.graph_embed_path, 'rb'))
 args.graph = pickle.load(open(args.graph_path, 'rb'))
 
-print(f"Graph loaded: {len(args.graph.nodes())} nodes, {len(args.graph.edges())} edges")
+# Check if graph is NetworkX graph or dict, and handle accordingly
+if isinstance(args.graph, dict):
+    raise TypeError(f"Graph file {args.graph_path} contains a dict, not a NetworkX graph. "
+                   f"Please check that you're loading the correct graph file (not graphnode_vocab.pkl).")
+elif isinstance(args.graph, nx.Graph):
+    print(f"Graph loaded: {args.graph.number_of_nodes()} nodes, {args.graph.number_of_edges()} edges")
+else:
+    # Try to check if it has nodes/edges methods
+    if hasattr(args.graph, 'nodes') and hasattr(args.graph, 'edges'):
+        try:
+            num_nodes = len(list(args.graph.nodes()))
+            num_edges = len(list(args.graph.edges()))
+            print(f"Graph loaded: {num_nodes} nodes, {num_edges} edges")
+        except:
+            raise TypeError(f"Graph object from {args.graph_path} is not a valid NetworkX graph object.")
+    else:
+        raise TypeError(f"Graph object from {args.graph_path} is not a NetworkX graph object. "
+                       f"Type: {type(args.graph)}")
+
 print(f"Embeddings shape: {args.graph_embed.shape}")
 
 # Set rho_size from embeddings
