@@ -334,12 +334,44 @@ else:
     print('Defaulting to vanilla SGD')
     optimizer = optim.SGD(model.parameters(), lr=args.lr)
 
+# Custom collate function to handle sparse tensors
+def sparse_collate_fn(batch):
+    """
+    Custom collate function to handle sparse tensors.
+    Converts sparse tensors to dense before batching.
+    """
+    samples, indices = zip(*batch)
+    
+    # Convert sparse tensors to dense
+    collated_samples = {}
+    for key in samples[0].keys():
+        tensors = []
+        for s in samples:
+            tensor = s[key]
+            # Convert sparse to dense if needed
+            if isinstance(tensor, torch.Tensor) and tensor.is_sparse:
+                tensor = tensor.to_dense()
+            # Ensure tensor is on correct device and has correct dtype
+            if isinstance(tensor, torch.Tensor):
+                tensor = tensor.float()
+            # Squeeze any extra dimensions if present (e.g., [1, vocab_size] -> [vocab_size])
+            if isinstance(tensor, torch.Tensor) and tensor.dim() > 1 and tensor.shape[0] == 1:
+                tensor = tensor.squeeze(0)
+            tensors.append(tensor)
+        
+        # Stack tensors
+        collated_samples[key] = torch.stack(tensors, dim=0)
+    
+    indices = torch.tensor(indices, dtype=torch.long)
+    return collated_samples, indices
+
 # Dataset
 code_type_info = (args.code_types, args.vocab_size, args.vocab_cum)
 train_filename = os.path.join(args.data_path, "bow_train.npy")
 TrainDataset = NontemporalDataset('train', train_filename, code_type_info, device=device, drug_imputation=args.drug_imputation, drug_count_thr=args.dc_thr)
 TrainDataloader = DataLoader(TrainDataset, batch_size=args.batch_size,
-                                shuffle=True, num_workers=args.num_workers)
+                                shuffle=True, num_workers=args.num_workers,
+                                collate_fn=sparse_collate_fn)
 
 num_batches = int(np.ceil(TrainDataset.__len__()/args.batch_size))
 args.log_interval = 20 # int(max(num_batches/20,np.sqrt(num_batches)))
@@ -349,7 +381,8 @@ test_file_1 = os.path.join(args.data_path, "bow_test_1.npy")
 test_file_2 = os.path.join(args.data_path, "bow_test_2.npy")
 TestDataset = NontemporalDataset('test', (test_filename, test_file_1, test_file_2), code_type_info, device=device, drug_imputation=args.drug_imputation, drug_count_thr=args.dc_thr)
 TestDataloader = DataLoader(TestDataset, batch_size=args.eval_batch_size,
-                            shuffle=False, num_workers=args.num_workers)
+                            shuffle=False, num_workers=args.num_workers,
+                            collate_fn=sparse_collate_fn)
 print('Data Prepared: train:  {}, test: {}'.format(len(TrainDataset), len(TestDataset)))
 print('normalization: ', args.bow_norm)
 
@@ -398,7 +431,11 @@ def train(epoch):
     for idx, (sample_batch, index) in enumerate(TrainDataloader):
         optimizer.zero_grad()
         model.zero_grad()
-        data_batch = sample_batch['Data'].to(device).float().to_dense().squeeze(1)
+        # Data is already dense and batched from collate_fn
+        data_batch = sample_batch['Data'].to(device).float()
+        # Remove extra dimension if present (from old sparse tensor format)
+        if data_batch.dim() > 2:
+            data_batch = data_batch.squeeze(1)
 
         normalized_data_batch = normalize(data_batch, args.vocab_cum, args.bow_norm)
         recon_loss, kld_theta = model(data_batch, normalized_data_batch)
@@ -601,12 +638,17 @@ def evaluate(m, tq=False):
         acc_loss = 0
         cnt = 0
         for idx, (sample_batch, index) in tqdm(enumerate(TestDataloader)):
-            data_batch_1 = sample_batch['Data_1'].float().to(device).to_dense().squeeze(1)
+            # Data is already dense and batched from collate_fn
+            data_batch_1 = sample_batch['Data_1'].float().to(device)
+            if data_batch_1.dim() > 2:
+                data_batch_1 = data_batch_1.squeeze(1)
             normalized_data_batch = normalize(data_batch_1, args.vocab_cum, args.bow_norm)
 
             theta, _, = m.get_theta(normalized_data_batch)
 
-            data_batch_2 = sample_batch['Data_2'].float().to(device).to_dense().squeeze(1)
+            data_batch_2 = sample_batch['Data_2'].float().to(device)
+            if data_batch_2.dim() > 2:
+                data_batch_2 = data_batch_2.squeeze(1)
 
             nll = m.decode(theta, beta, data_batch_2)
             recon_loss = nll.sum()
@@ -769,7 +811,10 @@ print('save theta of training set...')
 index_list = []
 for idx, (sample_batch, index) in tqdm(enumerate(TrainDataloader)):
     index_list.append(index.cpu().numpy())
-    data_batch = sample_batch["Data"].float().to(device).to_dense().squeeze(1)
+    # Data is already dense and batched from collate_fn
+    data_batch = sample_batch["Data"].float().to(device)
+    if data_batch.dim() > 2:
+        data_batch = data_batch.squeeze(1)
     normalized_data_batch = normalize(data_batch, args.vocab_cum, args.bow_norm)
     theta, _, = model.get_theta(normalized_data_batch)
     theta = theta.detach().cpu().numpy()
@@ -787,7 +832,10 @@ print('save theta of test set...')
 index_list = []
 for idx, (sample_batch, index) in tqdm(enumerate(TestDataloader)):
     index_list.append(index.cpu().numpy())
-    data_batch = sample_batch['Data'].float().to(device).to_dense().squeeze(1)
+    # Data is already dense and batched from collate_fn
+    data_batch = sample_batch['Data'].float().to(device)
+    if data_batch.dim() > 2:
+        data_batch = data_batch.squeeze(1)
     normalized_data_batch = normalize(data_batch, args.vocab_cum, args.bow_norm)
 
     theta, _, = model.get_theta(normalized_data_batch)
