@@ -11,9 +11,11 @@ def coo2tensor(coo, device):
     shape = coo.shape
     return torch.sparse_coo_tensor(i, v, torch.Size(shape), device=device)
 
+# CSR: Compress Sparse Row
 def csr2tensor(csr, device):
     return coo2tensor(csr.tocoo(), device)
 
+# Compress Sparse Column
 def csc2tensor(csc, device):
     return coo2tensor(csc.tocoo(), device)
 

@@ -52,9 +52,6 @@ Input:
 
 ==============
 
-
-
-
 ATC_ROOT (level 0, structural)
   └── ATC_GROUP (level 1, structural)
       └── ATC_65 (level 2, structural - từ 2 chữ số đầu của DRUG_65944)
