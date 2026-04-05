@@ -1,0 +1,1076 @@
+﻿drug_name,count,generic_name,atc_code,confidence,method
+/lọ,36,,,,
+/lọ acigmentin,1,amoxicillin and enzyme inhibitor,J01CR02,high,manual_dict
+/lọ atsypax 600 (600mg,1,,,,
+/lọ augmentin,2,amoxicillin and enzyme inhibitor,J01CR02,high,manual_dict
+/lọ azipowder,1,,,,
+/lọ biocemet sc,6,cefixime,J01DD08,high,manual_dict
+/lọ cezinco,1,zinc,A12CB,medium,manual_dict
+/lọ desbebe,2,,,,
+/lọ dung dịch xịt mũi sterimar blocked nose baby,2,,,,
+/lọ dung dịch xịt mũi sterimar nose hygiene and comfort,1,,,,
+/lọ fibrofin-145,2,,,,
+/lọ imefed,1,cefixime,J01DD08,high,manual_dict
+/lọ klacid,11,clarithromycin,J01FA09,high,manual_dict
+/lọ montelukast normon,1,montelukast,R03DC03,high,manual_dict
+/lọ nitidine,1,ranitidine,A02BA02,fuzzy_0.89,fuzzy_match
+/lọ olesom,8,,,,
+/lọ penzima,1,,,,
+/lọ siro ho haspan,3,cough preparation,R05,medium,manual_dict
+/lọ tiphapred e,1,methylprednisolone,H02AB04,high,manual_dict
+/lọ zaromax,2,azithromycin,J01FA10,high,manual_dict
+a.t calci sac,1004,calcium,A12AA,medium,manual_dict
+a.t calcium cort,113,calcium,A12AA,high,manual_dict
+a.t hoạt huyết dưỡng,1396,herbal preparation,V,medium,manual_dict
+a.t lục vị,9,,,,
+a.t magnesi b6 plus,145,,,,
+a.t mequitazine,1,mequitazine,R06AD07,fuzzy_1.00,fuzzy_match
+a.t nicorandil,890,nicorandil,C01DX16,high,manual_dict
+a.t silymarin,308,silymarin,A05BA03,high,manual_dict
+abbsin 200,11,,,,
+abr complex restoring cream,3,,,,
+abricotis,14,biotin,A11HA05,fuzzy_0.67,fuzzy_match
+acc,2,,,,
+acepental,5,tapentadol,N02AX06,fuzzy_0.74,fuzzy_match
+aceralgin,155,cefalexin,J01DB01,fuzzy_0.67,fuzzy_match
+acetilax,29,guacetisal,N02BA14,fuzzy_0.67,fuzzy_match
+acetuss,54,abetimus,L04AA22,fuzzy_0.67,fuzzy_match
+aciclovir,1,aciclovir,D06BB03,fuzzy_1.00,fuzzy_match
+acigmentin,1214,amoxicillin and enzyme inhibitor,J01CR02,high,manual_dict
+acriptega,2,,,,
+actre,51,acitretin,D05BB02,fuzzy_0.71,fuzzy_match
+ad tamy,799,,,,
+adacine,64,amsacrine,L01XX01,fuzzy_0.75,fuzzy_match
+afenacol,422,diclofenac,M01AB05,high,manual_dict
+agi-calci,6,alginic acid,A02BX13,fuzzy_0.67,fuzzy_match
+agicardi,8577,acetylsalicylic acid,B01AC06,high,manual_dict
+agifamcin,1,rifamycin,A07AA13,fuzzy_0.78,fuzzy_match
+agifovir,157,aciclovir,D06BB03,fuzzy_0.71,fuzzy_match
+agifuros,241,tafluprost,S01EE05,fuzzy_0.67,fuzzy_match
+agilecox,1,valdecoxib,M01AH03,fuzzy_0.67,fuzzy_match
+agimstan,607,fimasartan,C09CA10,fuzzy_0.67,fuzzy_match
+agimstan-h,2,,,,
+agiosmin,2,diosmin,C05CA03,fuzzy_0.80,fuzzy_match
+agitritine,433,amitriptyline,N06AA09,fuzzy_0.78,fuzzy_match
+ahevip,13,,,,
+aklevo 500,37,,,,
+alanboss xl,11,,,,
+alavir - e,32,,,,
+alegysal,11,,,,
+alfa-lipogamma 600 oral,156,,,,
+algostase,9,diastase,A09AA01,fuzzy_0.71,fuzzy_match
+alkidazol,46,azanidazole,G01AF13,fuzzy_0.70,fuzzy_match
+allergoff® skin barrier oil for therapeutic baths/ allergoff® barierowa oliwka do kąpieli leczniczych,100,,,,
+almed - probiotic moisture rich cream for face & body,130,,,,
+alphadaze -,15,,,,
+alphamom,1,,,,
+"alphavimin 100mg; 1mg; 1,15mg; 2mg; 133,35iu; 5mg; 6,65mg; 3,35mg",113,,,,
+alsiful s.r. tablets,70,,,,
+"alumag- s (800,4mg",81,alum,S01XA07,fuzzy_0.80,fuzzy_match
+am-xodin,263,famotidine,A02BA03,fuzzy_0.67,fuzzy_match
+amaloris,1878,amlodipine,C08CA01,high,manual_dict
+amebismo,288,,,,
+amlodipine stella,25,amlodipine,C08CA01,high,manual_dict
+amlodipine/atorvastatin normon,6,atorvastatin,C10AA05,medium,manual_dict
+amlor,112,amiloride,C03DB01,fuzzy_0.71,fuzzy_match
+amoxicillin/ acid clavulanic sandoz gmbh,21,amoxicillin,J01CA04,high,manual_dict
+amvifuxime 250,43,,,,
+anbaescin,454,kanamycin,A07AA08,fuzzy_0.67,fuzzy_match
+anbapirex 400mg,137,,,,
+ancitic,158,ancestim,L03AA12,fuzzy_0.67,fuzzy_match
+antibavir,20,maribavir,J05AX10,fuzzy_0.78,fuzzy_match
+antikans,1298,amoxicillin and enzyme inhibitor,J01CR02,high,manual_dict
+anvo-gefitinib,5,gefitinib,L01EB01,fuzzy_1.00,fuzzy_match
+apbezo,89,,,,
+apidogrel 75,1,clopidogrel,B01AC04,fuzzy_0.70,fuzzy_match
+apidra solostar+4 đầu kim pen ndl,36,,,,
+apirison 50,569,,,,
+apitim,1946,amlodipine,C08CA01,high,manual_dict
+apixodin dt,1458,desloratadine,R06AX27,high,manual_dict
+aprovel,7,apronal,N05CM12,fuzzy_0.71,fuzzy_match
+arbitel-am,35,barbital,N05CA04,fuzzy_0.67,fuzzy_match
+arginin av,4,,,,
+arimidex,24,carbamide,B05BC02,fuzzy_0.71,fuzzy_match
+aromasin,4,promazine,N05AA03,fuzzy_0.71,fuzzy_match
+arthroease,1,,,,
+asbesone,22,budesonide,A07EA06,fuzzy_0.67,fuzzy_match
+asosalic,640,salicylic acid,D01AE12,high,manual_dict
+aspirin,1431,acetylsalicylic acid,B01AC06,high,manual_dict
+aspirin stella,31,acetylsalicylic acid,B01AC06,high,manual_dict
+aspirin tab dwp,90,acetylsalicylic acid,B01AC06,high,manual_dict
+asstamid,4,lacosamide,N03AX18,fuzzy_0.67,fuzzy_match
+asstrozol,34,anastrozole,L02BG03,fuzzy_0.80,fuzzy_match
+atelec tablets,925,cilnidipine,C08CA14,high,manual_dict
+aticizal,4,,,,
+atiferlic,7,,,,
+atifibrate,12,simfibrate,C10AB06,fuzzy_0.80,fuzzy_match
+atihepam,11,,,,
+"atihytalox plus (600mg + 599,8mg",2,,,,
+atirin 10 (viên),1136,paracetamol,N02BE01,high,manual_dict
+atirin suspension,2212,paracetamol,N02BE01,high,manual_dict
+atisaltolin,61,antazoline,R01AC04,fuzzy_0.67,fuzzy_match
+atisyrup zinc,3787,zinc preparations,A12CB,high,manual_dict
+atoris,846,atorvastatin,C10AA05,high,manual_dict
+atormac,386,,,,
+atorpa - e,1,,,,
+atorpa- e,245,,,,
+atorvastatin,6946,atorvastatin,C10AA05,high,manual_dict
+atsypax 600 (600mg,28,,,,
+auclanityl,21,,,,
+augmentin,575,amoxicillin and enzyme inhibitor,J01CR02,high,manual_dict
+auroliza,1204,rosuvastatin,C10AA07,high,manual_dict
+ausmuco 750v,13,,,,
+auzion 1000 (875mg,67,,,,
+avantomega,3,,,,
+axeliv,14,,,,
+ayite,217,,,,
+azaduo,3,,,,
+azarga,39,,,,
+azipowder,20,,,,
+azlobal 4,2,,,,
+azopt,55,,,,
+b-coenzyme,970,vitamin b complex,A11EA,medium,manual_dict
+b12 ankermann,505,cyanocobalamin,B03BA01,medium,manual_dict
+babismo,60,,,,
+baclofen dwp,60,baclofen,M03BX01,high,manual_dict
+bactamox,21,sulbactam,J01CG01,fuzzy_0.71,fuzzy_match
+bacterocin oint.,312,,,,
+bamifen,146,tamoxifen,L02BA01,fuzzy_0.75,fuzzy_match
+basaglar 300u/3ml,241,,,,
+basethyrox,2,,,,
+basicillin,187,aspoxicillin,J01CA19,fuzzy_0.82,fuzzy_match
+bbcelat,4,,,,
+becatec,45,,,,
+benfosafe,627,benfotiamine,A11DA03,fuzzy_0.67,fuzzy_match
+benzina 10,249,,,,
+bestimac q10,179,,,,
+betahistin,2333,betahistine,N07CA01,high,manual_dict
+betahistin 24 a.t,76,betahistine,N07CA01,high,manual_dict
+betamaks,390,betamethasone,A07EA04,fuzzy_0.67,fuzzy_match
+betaserc,54,bietaserpine,C02AA07,fuzzy_0.70,fuzzy_match
+beuticystine,6,betahistine,N07CA01,fuzzy_0.78,fuzzy_match
+bexinclin,45,epicillin,J01CA07,fuzzy_0.67,fuzzy_match
+bicelor 375 dt.,650,cefaclor,J01DC04,high,manual_dict
+bifehema,235,bifemelane,N06AX08,fuzzy_0.67,fuzzy_match
+bifril,1,,,,
+bifril15mg tablet 2x14's,1,,,,
+bilclamos 312.5mg (250mg,2,,,,
+bilgrel,86,,,,
+biocemet dt,47,cefixime,J01DD08,high,manual_dict
+biocemet sc,996,cefixime,J01DD08,high,manual_dict
+bioketoca,280,,,,
+biosubtyl-ii 10^7-10^8 cfu/250mg,562,bacillus subtilis,A07FA,high,manual_dict
+biseptol 480,3,,,,
+bisoprolol,1378,bisoprolol,C07AB07,high,manual_dict
+bisostad,40,belinostat,L01XH04,fuzzy_0.67,fuzzy_match
+bivantox 200 tab,108,,,,
+"biviantac (800,4 mg",2,,,,
+bividiac,992,vildagliptin,A10BH02,high,manual_dict
+bixebra,16,,,,
+bloci,84,bleomycin,L01DC01,fuzzy_0.71,fuzzy_match
+bluecan forte,897,candesartan,C09CA06,high,manual_dict
+bluemint,1171,menthol preparation,R01AX,high,manual_dict
+bluemoxi,17,,,,
+boganic,10,,,,
+bolabio 10^9 cfu,1890,lactobacillus,A07FA01,high,manual_dict
+bometan (50mcg,33,,,,
+bominity,521,,,,
+bomitis,72,bromides,N05CM11,fuzzy_0.67,fuzzy_match
+boncinco mỗi,18,,,,
+boncium,22,bevonium,A03AB13,fuzzy_0.80,fuzzy_match
+bosrelor,42,,,,
+bostekid 30mg granules,10,,,,
+bourabia-8,288,,,,
+bradirem,2,ivabradine,C01EB17,fuzzy_0.67,fuzzy_match
+braiporin syrup,3,,,,
+breezol,343,sobrerol,R05CB07,fuzzy_0.67,fuzzy_match
+breztri aerosphere,2,,,,
+bridotyl,30,benperidol,N05AD07,fuzzy_0.67,fuzzy_match
+brilinta,99,brinase,B01AD06,fuzzy_0.67,fuzzy_match
+brilinta tab,5,,,,
+bromhexin,486,bromhexine,R05CB02,fuzzy_0.95,fuzzy_match
+bromtab 40 tablet,12,,,,
+broncho-vaxom adults,1,,,,
+brusonex,18,buspirone,N05BE01,fuzzy_0.71,fuzzy_match
+btozka,1,,,,
+butagan syrup,85,,,,
+buvamed,3,,,,
+bv levocin,66,bleomycin,L01DC01,fuzzy_0.74,fuzzy_match
+bvpalin,73,bivalirudin,B01AE06,fuzzy_0.67,fuzzy_match
+bát trân,44,,,,
+bút tiêm insulin-mypen,111,insulin,A10AB01,high,manual_dict
+bổ gan tiêu độc livsin-94,4,,,,
+bổ tỳ dưỡng cốt thái dương,1,,,,
+caduet,1,,,,
+calci -d,1,calcitriol,A11CC04,fuzzy_0.67,fuzzy_match
+calci-d3,2,calcitriol,A11CC04,fuzzy_0.67,fuzzy_match
+calciferat,2769,calcium and vitamin d,A12AX,high,manual_dict
+calcium - nic plus 550mg + 50mg,287,calcium,A12AA,high,manual_dict
+calcium hasan,415,calcium,A12AA,high,manual_dict
+calcium lactate 300 tablets,157,calcium,A12AA,high,manual_dict
+calcolife,27,calcifediol,A11CC06,fuzzy_0.70,fuzzy_match
+caltor,81,cefaclor,J01DC04,fuzzy_0.71,fuzzy_match
+calvin plus,4,,,,
+camzitol,634,calcitriol,A11CC04,fuzzy_0.67,fuzzy_match
+candekern,38,candesartan,C09CA06,fuzzy_0.70,fuzzy_match
+candesarmac,85,candesartan,C09CA06,fuzzy_0.82,fuzzy_match
+candesartan dwp,1,candesartan,C09CA06,high,manual_dict
+candisafe,160,,,,
+capesto,112,esomeprazole,A02BC05,high,manual_dict
+capesto 40,1364,esomeprazole,A02BC05,high,manual_dict
+capriles,300,cisapride,A03FA02,fuzzy_0.71,fuzzy_match
+capsicin gel,1077,capsaicin,M02AB01,fuzzy_0.76,fuzzy_match
+captagim,21,captodiame,N05BB02,fuzzy_0.67,fuzzy_match
+captopril stella,18,captopril,C09AA01,high,manual_dict
+carbamaz,84,carbamazepine,N03AF01,fuzzy_0.76,fuzzy_match
+carbidopa/levodopa tablets,5,,,,
+carbocistein,153,carbocisteine,R05CB03,fuzzy_0.96,fuzzy_match
+carthyal one,6,,,,
+cartijoints extra,59,dextran,B05AA05,fuzzy_0.83,fuzzy_match
+casodex,1,,,,
+cefass,14,,,,
+cefcenat,236,ceftriaxone,J01DD04,high,manual_dict
+cefimed,33,cefixime,J01DD08,fuzzy_0.80,fuzzy_match
+cehitas,29,ichtasol,D10BX01,fuzzy_0.67,fuzzy_match
+celecoxib,516,celecoxib,M01AH01,high,manual_dict
+cenex cap,59,,,,
+cepmaxlox,909,cefpodoxime,J01DD13,high,manual_dict
+cepoxitil,4,cefoxitin,J01DC01,fuzzy_0.78,fuzzy_match
+ceradan diaper,14,,,,
+cetigam,1,cefotiam,J01DC07,fuzzy_0.80,fuzzy_match
+cetirizin dwp,45,cetirizine,R06AE07,high,manual_dict
+cezinco,704,zinc,A12CB,medium,manual_dict
+cezmeta,1,acemetacin,M01AB11,fuzzy_0.71,fuzzy_match
+chimitol vaginal tablet,13,,,,
+chorlatcyn cao mật lợn khô,3,,,,
+cilavef,56,,,,
+cinnarizine sopharma,5,cinnarizine,N07CA02,high,manual_dict
+cinnarizine stada,24,cinnarizine,N07CA02,high,manual_dict
+cipro-denk,15,xaliproden,N07XX03,fuzzy_0.70,fuzzy_match
+clamodia 625 fc tablets,70,,,,
+clarie od,37,,,,
+clarisol-500,13,,,,
+clarithromycin stella,29,clarithromycin,J01FA09,high,manual_dict
+clenmysol tab,1,,,,
+clindamycin eg,43,clindamycin,J01FF01,high,manual_dict
+clingel,24,cineole,R05CA13,fuzzy_0.71,fuzzy_match
+clonicap,29,ciclonicate,C04AC07,fuzzy_0.74,fuzzy_match
+clorpheniramin kp,220,dexchlorpheniramine,R06AB02,fuzzy_0.78,fuzzy_match
+co-aprovel,4,,,,
+co-diovan,4,,,,
+colchicina seid,226,colchicine,M04AC01,fuzzy_0.80,fuzzy_match
+colchicine stella,51,colchicine,M04AC01,high,manual_dict
+colocol suppo 150,3,,,,
+colosar - denk 50/ 12.5,9,,,,
+colosar-denk,24,,,,
+combigan,120,combinations,A01AA30,fuzzy_0.70,fuzzy_match
+combiwave fb 200 (200mcg,165,,,,
+conazonin,35,doxazosin,C02CA04,fuzzy_0.67,fuzzy_match
+concor,99,bisoprolol,C07AB07,high,manual_dict
+concor cor,4043,bisoprolol,C07AB07,high,manual_dict
+concor cor tab,4,bisoprolol,C07AB07,high,manual_dict
+conipa pure,237,,,,
+cordamil,27,chlorambucil,L01AA02,fuzzy_0.70,fuzzy_match
+coveram 10-10 tab 10-10mg 30's,1,,,,
+coveram 5-5 tab,2,,,,
+coversyl plus,5,,,,
+coversyl tab,4,,,,
+cpr-sachabo,93,,,,
+cravit,180,,,,
+creamec,204,,,,
+crederm ointment,1,,,,
+crestor tab,3,,,,
+crila forte,10,crilanomer,D03AX09,fuzzy_0.67,fuzzy_match
+cruderan,5,dextran,B05AA05,fuzzy_0.67,fuzzy_match
+curam,848,amoxicillin and enzyme inhibitor,J01CR02,high,manual_dict
+cystin-b6 boston 500 mg,191,,,,
+dacolfort,3660,diosmin,C05CA03,high,manual_dict
+daiclo,305,aciclovir,D06BB03,fuzzy_0.67,fuzzy_match
+dalekine,421,alverine,A03AX08,fuzzy_0.75,fuzzy_match
+dapzin-10,94,,,,
+daquetin,305,dapoxetine,G04BX14,fuzzy_0.67,fuzzy_match
+datviron,40,ferrous sulfate,B03AA07,medium,manual_dict
+debomin,640,merbromin,D08AK04,fuzzy_0.75,fuzzy_match
+decolic,1,demecolcine,L01CC01,fuzzy_0.67,fuzzy_match
+decolic f,232,,,,
+decolic-f,260,,,,
+delopedil,198,delapril,C09AA12,fuzzy_0.71,fuzzy_match
+denk-air junior,82,,,,
+depakine chrono,7,,,,
+dermalight active illuminating cream,4,,,,
+desbebe,670,,,,
+detanana,6,dextran,B05AA05,fuzzy_0.67,fuzzy_match
+dexibuprofen,797,ibuprofen,M01AE01,medium,manual_dict
+dialamic,380,nialamide,N06AF02,fuzzy_0.71,fuzzy_match
+diamicron mr,67,gliclazide,A10BB09,high,manual_dict
+dicenin,110,difenoxin,A07DA04,fuzzy_0.75,fuzzy_match
+diclowal supp,1,,,,
+digazo,64,ditazole,B01AC01,fuzzy_0.71,fuzzy_match
+diltiazem dwp,216,diltiazem,C08DB01,high,manual_dict
+dimagel,4,dimazole,D01AE17,fuzzy_0.67,fuzzy_match
+dimonium,43,cetrimonium,D08AJ02,fuzzy_0.74,fuzzy_match
+diosfort,46,,,,
+diosfrot,6,,,,
+diovan,1,,,,
+dipatin,560,cisplatin,L01XA01,fuzzy_0.75,fuzzy_match
+diquas,53,,,,
+disthyrox 100µg,173,,,,
+divara,32,,,,
+dixirein tab,451,ambroxol,R05CB06,high,manual_dict
+dloe,69,,,,
+dogrelsavi,3209,clopidogrel,B01AC04,high,manual_dict
+"dolutegravir, lamivudine and tenofovir disoproxil fumarate tablets",15,lamivudine,J05AF05,high,manual_dict
+domela,529,,,,
+domuvar 2x10^9 cfu/5ml,90,,,,
+dopegyt,100,,,,
+dorithricin,162,dirithromycin,J01FA13,fuzzy_0.75,fuzzy_match
+dr max comforcare ice spray,17,,,,
+dr.pharti acne gone,53,,,,
+dromasm fort,7,,,,
+dropstar,206,nadroparin,B01AB06,fuzzy_0.67,fuzzy_match
+drotusc,1066,dextromethorphan,R05DA09,high,manual_dict
+drotusc forte,1499,dextromethorphan,R05DA09,high,manual_dict
+dryches,497,,,,
+dung dịch rửa vết thương suporan,9,,,,
+dung dịch súc miệng - họng supowat,77,,,,
+dung dịch xịt mũi sterimar allergic nose,14,,,,
+dung dịch xịt mũi sterimar blocked nose,7,,,,
+dung dịch xịt mũi sterimar blocked nose baby,16,,,,
+dung dịch xịt mũi sterimar nose hygiene and comfort,24,,,,
+dung dịch xịt mũi sterimar nose hygiene baby,8,,,,
+dung dịch xịt mũi sterimar sensitive nose,9,,,,
+dung dịch xịt mũi xoang plasmakare x-spray,236,,,,
+duoridin,86,idoxuridine,D06BB01,fuzzy_0.74,fuzzy_match
+duphalac,158,,,,
+"dutabit 0,5",2,,,,
+dutixim,11,,,,
+dưỡng cốt,1,,,,
+ebifanz,34,,,,
+ebitac,46,felbinac,M02AA08,fuzzy_0.71,fuzzy_match
+ebitac forte,153,,,,
+efferoxen,8,deferoxamine,V03AC01,fuzzy_0.67,fuzzy_match
+effixent,19,,,,
+elaria,1,delapril,C09AA12,fuzzy_0.71,fuzzy_match
+eliquis tab,3,eliglustat,A16AX10,fuzzy_0.67,fuzzy_match
+emanera,8,,,,
+emfoxim,3,cefuroxime,J01DC02,fuzzy_0.71,fuzzy_match
+empagliflozin,1018,empagliflozin,A10BK03,high,manual_dict
+entacron,927,entacapone,N04BX02,fuzzy_0.78,fuzzy_match
+enterobella 1.109 -2.109 cfu,560,probiotics,A07FA,high,manual_dict
+epilona dr,47,valproic acid,N03AG01,high,manual_dict
+esdopa-40,69,,,,
+eskafolvit capsule,6,,,,
+eskar vita,74,,,,
+esojay,23,,,,
+esomeprazol,5497,esomeprazole,A02BC05,fuzzy_0.96,fuzzy_match
+espumisan capsules,170,,,,
+ethambutol,39,ethambutol,J04AK02,fuzzy_1.00,fuzzy_match
+eto,117,,,,
+etodolac dwp,81,etodolac,M01AB08,fuzzy_1.00,fuzzy_match
+etofride 50,1477,etoricoxib,M01AH05,high,manual_dict
+etoricoxib,1866,etoricoxib,M01AH05,high,manual_dict
+eucol,409,,,,
+exemesin,37,exemestane,L02BG06,fuzzy_0.78,fuzzy_match
+exfast,16,,,,
+ezechol,599,bethanechol,N07AB02,fuzzy_0.67,fuzzy_match
+ezoleta tablet,5,,,,
+famodin,612,famotidine,A02BA03,fuzzy_0.82,fuzzy_match
+farzincol,1,zinc,A12CB,medium,manual_dict
+fascapin-20,365,,,,
+fave di fuca hydralax,12,,,,
+febustad 40,60,febuxostat,M04AA03,fuzzy_0.67,fuzzy_match
+fefasdin,1675,fexofenadine,R06AX26,high,manual_dict
+feleifen,9,,,,
+feleilor,5,,,,
+felodipine stella,674,felodipine,C08CA02,high,manual_dict
+femadex,48,,,,
+femaplex,2,,,,
+fenostad 67,53,,,,
+fentimeyer 600,22,,,,
+feraminda,1,fenyramidol,M03BX30,fuzzy_0.70,fuzzy_match
+ferium- xt,77,cerium oxalate,A04AD02,fuzzy_0.67,fuzzy_match
+fezidat,798,,,,
+fibrofin-145,193,,,,
+fitrofu,289,nitrofural,B05CA03,fuzzy_0.71,fuzzy_match
+fixco,64,,,,
+flaben,1,,,,
+flixotide evohaler,4,,,,
+flolistim,2,colistin,A07AA10,fuzzy_0.71,fuzzy_match
+fluvastatin,775,fluvastatin,C10AA04,fuzzy_1.00,fuzzy_match
+fluvastatin dwp,1368,fluvastatin,C10AA04,fuzzy_1.00,fuzzy_match
+fosmitic,45,,,,
+foxmyzil,1,,,,
+fucipa,68,,,,
+fucipa 15g(1) túyb cystin-b6 boston 500 mg,2,,,,
+fudophar,63,,,,
+fudophos,2,,,,
+fumagate,525,almagate,A02AD03,fuzzy_0.75,fuzzy_match
+gabapentin,1693,gabapentin,N03AX12,high,manual_dict
+galvus,654,,,,
+galvus met,132,,,,
+gaptinew,326,gabapentin,N03AX12,high,manual_dict
+gastevin,2665,esomeprazole,A02BC05,high,manual_dict
+gastro-bisal tablet,109,,,,
+gel dùng ngoài mangizeni,408,,,,
+gel tra mắt eyegel,26,,,,
+gel xịt miệng - họng nacato,47,,,,
+gel xịt mũi nasorin,133,,,,
+genituk,260,,,,
+gentin,1,gentamicin,D06AX07,fuzzy_0.75,fuzzy_match
+gikanin,1004,gliclazide,A10BB09,high,manual_dict
+gimtafort,2,gitoformate,C01AA09,fuzzy_0.70,fuzzy_match
+giotrif,1,,,,
+glencinone,180,glafenine,N02BG03,fuzzy_0.74,fuzzy_match
+gliclada,766,gliclazide,A10BB09,fuzzy_0.78,fuzzy_match
+glimepirid dwp,294,glimepiride,A10BB12,fuzzy_0.95,fuzzy_match
+glimsure,1520,lisuride,G02CB02,fuzzy_0.75,fuzzy_match
+glivt,36,,,,
+glizym-m,33,,,,
+glucophage,9,metformin,A10BA02,high,manual_dict
+glucophage xr,716,metformin,A10BA02,high,manual_dict
+glucophage ® xr,681,metformin,A10BA02,high,manual_dict
+glucovance,273,glucosamine,M01AX05,fuzzy_0.76,fuzzy_match
+glucozinc s,22,zinc,A12CB,medium,manual_dict
+glumarix 20mg; 612mg,26,,,,
+glumeben,394,glibenclamide,A10BB01,high,manual_dict
+glumeform,3666,metformin,A10BA02,high,manual_dict
+glupain forte,7,,,,
+glutowin plus,755,,,,
+gluzitop mr,206,,,,
+glyxambi,11,,,,
+golheal,358,collagenase,D03BA,high,manual_dict
+greatcet 325mg,983,paracetamol,N02BE01,high,manual_dict
+gumitic,9,,,,
+hadubamol,5,,,,
+haducarbo,7,acarbose,A10BF01,fuzzy_0.71,fuzzy_match
+haduliptin,11,alogliptin,A10BH04,fuzzy_0.70,fuzzy_match
+hadusartan hydro,11,,,,
+hantacid (220 mg,394,aluminium hydroxide,A02AB01,high,manual_dict
+hapacol,2150,paracetamol,N02BE01,high,manual_dict
+happyvisc,5,,,,
+harnal ocas,293,tamsulosin,G04CA02,high,manual_dict
+harotin,267,aprotinin,B02AB01,fuzzy_0.75,fuzzy_match
+hebozeta,8,,,,
+hemolog,8,esmolol,C07AB09,fuzzy_0.71,fuzzy_match
+hepaqueen plus,106,,,,
+heradrea,5,,,,
+hidrasec,251,,,,
+hiruscar post acne gel,20,,,,
+hismedan,167,,,,
+hoastex,1775,herbal cough preparation,R05X,high,manual_dict
+hornol,3,xibornol,J01XX02,fuzzy_0.71,fuzzy_match
+hovinlex,30,,,,
+hoạt huyết dưỡng não dược sư,118,herbal preparation,V,medium,manual_dict
+hoạt huyết dưỡng não đông dược việt,7,herbal preparation,V,medium,manual_dict
+htnesoum,13,,,,
+humalog mix50 kwikpen+3 pen ndl,21,,,,
+huntelaar,1625,losartan,C09CA01,high,manual_dict
+hydrocolacyl,236,,,,
+iba-mentin,120,gabapentin,N03AX12,fuzzy_0.70,fuzzy_match
+ibsaga,7,,,,
+ibuhadi 600,11,,,,
+ibutop,55,,,,
+idatril,954,imidapril,C09AA16,fuzzy_0.75,fuzzy_match
+imdur,1,,,,
+imdur tab,2,,,,
+imedoxim,184,meldonium,C01EB22,fuzzy_0.71,fuzzy_match
+imefed,391,cefixime,J01DD08,high,manual_dict
+imefed dt,384,cefixime,J01DD08,high,manual_dict
+imefed sc,670,cefixime,J01DD08,high,manual_dict
+imenir,12,,,,
+imerixx,2480,trimebutine,A03AA05,high,manual_dict
+imexime,276,mesuximide,N03AD03,fuzzy_0.71,fuzzy_match
+imidu,4,,,,
+imruvat,169,,,,
+insuact,70,insects,V01AA07,fuzzy_0.71,fuzzy_match
+irbeplus hct,158,,,,
+irbesartan od dwp,8,irbesartan,C09CA04,high,manual_dict
+irbevel,2,,,,
+isaias,12,,,,
+isoday,1189,pantoprazole,A02BC02,high,manual_dict
+isosorbid mononitrat dwp,104,isosorbide mononitrate,C01DA14,fuzzy_0.87,fuzzy_match
+isotisun,6,biotin,A11HA05,fuzzy_0.71,fuzzy_match
+isotretinoin,11,isotretinoin,D10AD04,fuzzy_1.00,fuzzy_match
+ivacrig (huyết thanh kháng dại tinh chế),213,,,,
+ivagim,187,,,,
+ivermectin 3 a.t,262,ivermectin,D11AX22,fuzzy_1.00,fuzzy_match
+januvia,1,sitagliptin,A10BH01,high,manual_dict
+japiane,293,atropine,A03BA01,fuzzy_0.67,fuzzy_match
+jardiance,1529,empagliflozin,A10BK03,high,manual_dict
+javelin,2,alverine,A03AX08,fuzzy_0.67,fuzzy_match
+jubve,8,,,,
+kabzu,1,,,,
+kacerin,253,diacerein,M01AX21,fuzzy_0.75,fuzzy_match
+kaclocide plus,81,,,,
+kafedipin,184,felodipine,C08CA02,fuzzy_0.74,fuzzy_match
+kaflovo,665,levofloxacin,J01MA12,high,manual_dict
+kapredin,5054,cefuroxime,J01DC02,high,manual_dict
+karvidil,254,carvedilol,C07AG02,fuzzy_0.67,fuzzy_match
+kary uni,129,,,,
+katrypsin fort,85,trypsin,B06AA07,fuzzy_0.88,fuzzy_match
+kavasdin,2149,amlodipine,C08CA01,high,manual_dict
+kavosnor forte,27,,,,
+ketoprofen ec dwp,431,ketoprofen,M01AE03,high,manual_dict
+ketoproxin,951,ketoprofen,M01AE03,high,manual_dict
+ketotifen helcor,33,ketotifen,R06AX17,fuzzy_1.00,fuzzy_match
+ketovital,37,ketoprofen,M01AE03,high,manual_dict
+khang minh tỷ viêm nang,2,,,,
+kidneycap bát vị - bổ thận dương,1,,,,
+kidneycap bát vị bổ thận dương cao đặc,9,,,,
+kitno,186,,,,
+klacid,752,clarithromycin,J01FA09,high,manual_dict
+kogimin,187,,,,
+kutab,165,,,,
+laci-eye,1016,artificial tears,S01XA20,medium,manual_dict
+lacikez,1049,lansoprazole,A02BC03,high,manual_dict
+lacisartan hct,3279,losartan,C09CA01,high,manual_dict
+lacosepicyn,307,,,,
+lacosoxicron,78,,,,
+lacves,80,,,,
+lambertu,23,,,,
+lanam sc,27,,,,
+lantus solostar+4 đầu kim pen ndl,7,,,,
+leminerg,11,clemastine,D04AA14,fuzzy_0.67,fuzzy_match
+lepigin,23,lepirudin,B01AE02,fuzzy_0.75,fuzzy_match
+leracet 500mg film-coated tablets,4,,,,
+lercatop,34,,,,
+letarid 50,36,levetiracetam,N03AX14,high,manual_dict
+levistel,11,levamisole,P02CE01,fuzzy_0.67,fuzzy_match
+levodhg,15,levodopa,N04BA01,fuzzy_0.67,fuzzy_match
+levothyrox,166,levothyroxine sodium,H03AA01,fuzzy_0.67,fuzzy_match
+levpiram,268,levetiracetam,N03AX14,fuzzy_0.67,fuzzy_match
+lifecita,1,,,,
+linatab tablet,94,,,,
+linezin,8,linezolid,J01XX08,fuzzy_0.75,fuzzy_match
+linezolid krka,2,linezolid,J01XX08,high,manual_dict
+lipagim,570,,,,
+lipanthyl 200m,659,fenofibrate,C10AB05,high,manual_dict
+lipanthyl nt,5,fenofibrate,C10AB05,high,manual_dict
+lipidorox,253,,,,
+lipitor,202,atorvastatin,C10AA05,high,manual_dict
+lirystad 150,1,,,,
+lisazin,24,olsalazine,A07EC03,fuzzy_0.71,fuzzy_match
+lisinopril/hctz stada,212,lisinopril,C09AA03,medium,manual_dict
+lisoril-10,576,lisinopril,C09AA03,high,manual_dict
+livernin-dh,34,,,,
+livosil,213,inositol,A11HA07,fuzzy_0.67,fuzzy_match
+logpatat,12,lovastatin,C10AA02,fuzzy_0.67,fuzzy_match
+lorista hd,2,orlistat,A08AB01,fuzzy_0.67,fuzzy_match
+lornomeyer,238,,,,
+losar-denk,1,losartan,C09CA01,fuzzy_0.77,fuzzy_match
+losartan dwp,2614,losartan,C09CA01,high,manual_dict
+lotemax,87,,,,
+lovarem tablets,4,,,,
+lowsta,2350,atorvastatin,C10AA05,high,manual_dict
+lupipezil,197,donepezil,N06DA02,high,manual_dict
+luvox,170,,,,
+"lysoelf 250mg, 100mg",1,,,,
+macrina,418,amsacrine,L01XX01,fuzzy_0.75,fuzzy_match
+mariprax,27,,,,
+maxibumol,13,,,,
+maxibumol fort,85,,,,
+mebendazole,20,mebendazole,P02CA01,fuzzy_1.00,fuzzy_match
+mebisita,441,,,,
+meclon,22,meclozine,R06AE05,fuzzy_0.80,fuzzy_match
+medaxetine,6,mexiletine,C01BB02,fuzzy_0.80,fuzzy_match
+medoome,632,,,,
+medoxicam,96,meloxicam,M01AC06,fuzzy_0.89,fuzzy_match
+megazon,293,metolazone,C03BA08,fuzzy_0.71,fuzzy_match
+meglucon,386,meglutol,C10AX05,fuzzy_0.75,fuzzy_match
+meko inh,2,,,,
+melanov-m,14,,,,
+melevox,45,melevodopa,N04BA04,fuzzy_0.71,fuzzy_match
+melopower,446,melperone,N05AD03,fuzzy_0.67,fuzzy_match
+meloxicam od dwp,2,meloxicam,M01AC06,high,manual_dict
+menrva white,2,,,,
+mepoly (35mg,218,,,,
+mesadona,6,mesna,R05CB05,fuzzy_0.77,fuzzy_match
+metaxidox,40,metadoxine,A05BA09,fuzzy_0.74,fuzzy_match
+metazrel,8,metolazone,C03BA08,fuzzy_0.67,fuzzy_match
+metazydyna,356,,,,
+metformin,1238,metformin,A10BA02,high,manual_dict
+methocarbamol mcn,2360,methocarbamol,M03BA03,high,manual_dict
+methylcobalamin capsules,206,methylscopolamine,A03BB03,fuzzy_0.68,fuzzy_match
+metiny,145,emetine,P01AX02,fuzzy_0.77,fuzzy_match
+metozamin,41,methoxamine,C01CA10,fuzzy_0.80,fuzzy_match
+metronidazol,718,metronidazole,A01AB17,fuzzy_0.96,fuzzy_match
+meyer-salazin,13,mesalazine,A07EC02,fuzzy_0.82,fuzzy_match
+meyerbastin,20,ebastine,R06AX22,fuzzy_0.74,fuzzy_match
+meyerdabiga,68,,,,
+meyerexcold,1309,cold preparation,R05X,high,manual_dict
+meyernazid,57,,,,
+meyerproxen,304,naproxen,M01AE02,high,manual_dict
+meyertenin,272,methenamine,J01XX05,fuzzy_0.67,fuzzy_match
+meyerzadin 4,1,,,,
+mezafen,483,mafenide,D06BA03,fuzzy_0.67,fuzzy_match
+mft- cefaclor,515,cefaclor,J01DC04,fuzzy_1.00,fuzzy_match
+mibelet,4,,,,
+mibeplen,1,,,,
+mibetel hct,404,telmisartan,C09CA07,high,manual_dict
+mibiotin,116,biotin,A11HA05,fuzzy_0.86,fuzzy_match
+midamox,18,,,,
+midanat 100,1,,,,
+midantin,2793,amoxicillin and enzyme inhibitor,J01CR02,high,manual_dict
+minbrom,217,,,,
+mirenzine,8,pirenzepine,A02BX03,fuzzy_0.80,fuzzy_match
+mirzaten,138,mirtazapine,N06AX11,high,manual_dict
+misenbo,1,,,,
+miticilux,95,,,,
+mitidipil,20,minoxidil,C02DC01,fuzzy_0.67,fuzzy_match
+mitipizid,605,mitiglinide,A10BX08,fuzzy_0.70,fuzzy_match
+mitipreni,466,remikiren,C09XA01,fuzzy_0.67,fuzzy_match
+mitiquapril,916,quinapril,C09AA06,high,manual_dict
+mivifort,917,multivitamins,A11AA,high,manual_dict
+mocalmix,34,miocamycin,J01FA11,fuzzy_0.67,fuzzy_match
+mogaton,3,mitoguazone,L01XX16,fuzzy_0.67,fuzzy_match
+mohizi,714,,,,
+momencef,37,cefixime,J01DD08,high,manual_dict
+monine,10,moxonidine,C02AC05,fuzzy_0.75,fuzzy_match
+montelukast normon,390,montelukast,R03DC03,high,manual_dict
+mopristad,9,orlistat,A08AB01,fuzzy_0.71,fuzzy_match
+morphin,22,morphine,N02AA01,fuzzy_0.93,fuzzy_match
+mosad mt,18,,,,
+moxipa,109,droxidopa,C01CA27,fuzzy_0.67,fuzzy_match
+muldini,1,,,,
+myfoscin,12,fosfomycin,J01XX01,fuzzy_0.67,fuzzy_match
+mylosulprid,212,levosulpiride,N05AL07,fuzzy_0.75,fuzzy_match
+mỡ tra mắt không chất bảo quản hydramed night sensitive,5,,,,
+nacepil,123,benazepril,C09AA07,fuzzy_0.71,fuzzy_match
+nakibu,583,thiocolchicoside,M03BX05,high,manual_dict
+nalordia,460,nalorphine,V03AB02,fuzzy_0.67,fuzzy_match
+natcorig,2,,,,
+navaldo,315,,,,
+nebizide,8,mebutizide,C03AA13,fuzzy_0.78,fuzzy_match
+nefolin,229,tramadol,N02AX02,high,manual_dict
+neilmed nasogel spray,9,,,,
+neilmed sinus rinse 10 sachets,3,,,,
+neilmed sinus rinse 50 sachets,4,,,,
+neilmed sinus rinse kit 60 sachets,6,,,,
+neilmed sinus rinse pediatric starter kit,5,,,,
+neorutin,139,monoxerutin,C05CA02,fuzzy_0.74,fuzzy_match
+neosamin forte,301,,,,
+neso,3,,,,
+nesulix,20,nimesulide,M01AX17,fuzzy_0.71,fuzzy_match
+nicomen tablets,155,,,,
+nifedipin t20 retard,37,nifedipine,C08CA05,fuzzy_0.95,fuzzy_match
+nifehexal 30 la,4,,,,
+nitidine,589,ranitidine,A02BA02,fuzzy_0.89,fuzzy_match
+nocutil,18,,,,
+nolet,7,cineole,R05CA13,fuzzy_0.67,fuzzy_match
+nolvadex-d,40,,,,
+novahexin,649,,,,
+novomix 30 flexpen + 3 đầu kim novofine,395,insulin aspart,A10AD05,high,manual_dict
+nozaxen,188,naproxen,G02CC02,fuzzy_0.67,fuzzy_match
+nystatin,2,nystatin,A07AA02,high,manual_dict
+nén sủi,2,,,,
+nén sủi alphadaze -,2,,,,
+nén sủi antikans,3,amoxicillin and enzyme inhibitor,J01CR02,high,manual_dict
+nén sủi cefimed,1,,,,
+nén sủi pegaset,1,pregabalin,N03AX16,high,manual_dict
+nén sủi seractil,1,,,,
+nén sủi vitatrum - b complex vitamin b1 (thiamin mononitrat) 5mg; vitamin b2 (riboflavin) 2mg; vitamin b6 (pyridoxin hydroclorid) 2mg; vitamin pp (nicotinamid),1,vitamin b complex,A11EA,medium,manual_dict
+oflovid,199,,,,
+ofloxacin-pos,10,ofloxacin,J01MA01,high,manual_dict
+olanxol,640,polidocanol,C05BB02,fuzzy_0.67,fuzzy_match
+olanzap,56,olanzapine,N05AH03,fuzzy_0.82,fuzzy_match
+olesom,54,,,,
+omcetti,1,tolmetin,M01AB03,fuzzy_0.67,fuzzy_match
+onsetron,19,ondansetron,A04AA01,fuzzy_0.84,fuzzy_match
+opedulox,161,,,,
+opedulox 40,102,,,,
+oprymea,95,,,,
+oravintin,52,doravirine,J05AG06,fuzzy_0.74,fuzzy_match
+oresol,450,sobrerol,R05CB07,fuzzy_0.71,fuzzy_match
+ornithin,22,eflornithine,D11AX16,fuzzy_0.80,fuzzy_match
+ortizole,5,ornidazole,G01AF06,fuzzy_0.78,fuzzy_match
+osvimec,36,,,,
+ozanta,491,olanzapine,N05AH03,high,manual_dict
+padolcure,4,,,,
+palibone,117,pargyline,C02KC01,fuzzy_0.71,fuzzy_match
+palidso,442,pralidoxime,V03AB04,fuzzy_0.67,fuzzy_match
+pallas,63,alteplase,B01AD02,fuzzy_0.67,fuzzy_match
+pancal,69,,,,
+para-opc,10,paraoxon,S01EB10,fuzzy_0.67,fuzzy_match
+partamol tab.,6955,paracetamol,N02BE01,high,manual_dict
+partamol- cafein 500mg,448,paracetamol,N02BE01,high,manual_dict
+pataday,58,,,,
+pecflu,18,,,,
+pecrandil,14,nicorandil,C01DX16,fuzzy_0.74,fuzzy_match
+pectol te,5,electrolytes,B05BB01,fuzzy_0.67,fuzzy_match
+pegaset,1204,pregabalin,N03AX16,high,manual_dict
+pemolip,26,pemoline,N06BA05,fuzzy_0.80,fuzzy_match
+pen ndl,54,,,,
+penresit,4,mephenesin,M03BX06,fuzzy_0.67,fuzzy_match
+penzima,708,,,,
+perfeclly,27,,,,
+permixon,9,eperisone,M03BX09,fuzzy_0.71,fuzzy_match
+pharbacol,2505,paracetamol,N02BE01,high,manual_dict
+pharti derm dermatologique egf moisture cream,4,,,,
+phenytoin,25,phenytoin,N03AB02,high,manual_dict
+phileo tab,8,,,,
+philurso,26,,,,
+phlebodia,309,,,,
+phlorofon odt,379,,,,
+phong dan,129,,,,
+phostaligel nic,229,aluminium phosphate,A02AB03,high,manual_dict
+pidoncam,1,piroxicam,M01AC01,fuzzy_0.71,fuzzy_match
+plasmakare nasal clean (hộp 01 bình,68,,,,
+plavix,63,clopidogrel,B01AC04,high,manual_dict
+pms -ursodiol c,3,,,,
+pokemine,17,ketamine,N01AX03,fuzzy_0.75,fuzzy_match
+polymer che phủ bảo vệ vết thương healit,31,,,,
+polymer che phủ bảo vệ vết thương healit rectan,76,,,,
+postezatal gold,13,,,,
+povidon vcp,2,crospovidone,A07BC03,fuzzy_0.74,fuzzy_match
+powerforte,1,,,,
+pracetam,531,piracetam,N06BX03,fuzzy_0.94,fuzzy_match
+pravastatin savi,1,pravastatin,C10AA03,high,manual_dict
+pred forte,70,,,,
+pregabakern,208,pregabalin,N03AX16,fuzzy_0.76,fuzzy_match
+prevlog,292,,,,
+prizocef,6,prilocaine,N01BB04,fuzzy_0.67,fuzzy_match
+procoralan,24,procaine,C05AD05,fuzzy_0.67,fuzzy_match
+proges,31,progesterone,G03DA04,fuzzy_0.67,fuzzy_match
+prolandex 60,5,,,,
+propylthiouracil dwp,16,propylthiouracil,H03BA02,high,manual_dict
+prusenza plus,1,,,,
+pulmicort respules,2,policresulen,D08AE02,fuzzy_0.67,fuzzy_match
+"pulmicort respules (0.25mg/1ml, ống",40,,,,
+pyme diapro mr,16,,,,
+qcozetax,317,cefotaxime,J01DD01,high,manual_dict
+queitoz-50,25,,,,
+quelept,3,,,,
+quetiapin,25,quetiapine,N05AH04,fuzzy_0.95,fuzzy_match
+quetiapine tablets,51,quetiapine,N05AH04,high,manual_dict
+rablet b,27,rabeprazole,A02BC04,high,manual_dict
+rabzak,13,,,,
+racedagim,32,piracetam,N06BX03,fuzzy_0.67,fuzzy_match
+racesec,2,,,,
+ramipril,247,ramipril,C09AA05,high,manual_dict
+ramipril-ac,225,ramipril,C09AA05,high,manual_dict
+ranexicor,19,,,,
+raxnazole,230,proxazole,A03AX07,fuzzy_0.78,fuzzy_match
+rebamipide,373,rebamipide,A02BX14,fuzzy_1.00,fuzzy_match
+reboncel ac gel,59,,,,
+reboncel ultra sun block cream,10,,,,
+reboncel urea soft cream,176,13C-urea,V04CX05,fuzzy_0.67,fuzzy_match
+redlip,8,,,,
+reduze,41,,,,
+regulon,31,,,,
+repaglinide tablets,186,repaglinide,A10BX02,fuzzy_1.00,fuzzy_match
+respiwel,85,reserpine,C02AA02,fuzzy_0.71,fuzzy_match
+revole,2,,,,
+revole 40mg(3) partamol- cafein 500mg,1,paracetamol,N02BE01,high,manual_dict
+rheumatic,45,,,,
+ridolip,414,rosuvastatin,C10AA07,high,manual_dict
+ridolip s,2145,rosuvastatin,C10AA07,high,manual_dict
+rifaliv,85,,,,
+rinalix-xepa,307,,,,
+ripratine,2303,cariprazine,N05AX15,fuzzy_0.80,fuzzy_match
+risdontab,15,,,,
+risperidon vpc,434,risperidone,N05AX08,fuzzy_0.95,fuzzy_match
+ritaxim-550,6,,,,
+rivaroxaban-5a farma,274,rivaroxaban,B01AF01,high,manual_dict
+rosutrox,8,,,,
+roticox,2,,,,
+rotinvast,3411,rosuvastatin,C10AA07,high,manual_dict
+roxcetam,16,oxiracetam,N06BX07,fuzzy_0.78,fuzzy_match
+runor,36,,,,
+rupatadine stella,9,rupatadine,R06AX28,fuzzy_1.00,fuzzy_match
+rutantop,95,,,,
+sadapron,729,dantron,A06AB03,fuzzy_0.67,fuzzy_match
+sagamome,72,sargramostim,L03AA09,fuzzy_0.70,fuzzy_match
+salgad,154,,,,
+sallet,8,salsalate,N02BA06,fuzzy_0.67,fuzzy_match
+sanlein,446,hyaluronic acid,S01XA,high,manual_dict
+santafer,42,,,,
+savi candesartan,961,candesartan,C09CA06,high,manual_dict
+savi donepezil,117,donepezil,N06DA02,high,manual_dict
+savi eperisone,36,eperisone,M03BX09,high,manual_dict
+savi etoricoxib,49,etoricoxib,M01AH05,high,manual_dict
+savi flunarizine,36,flunarizine,N07CA03,fuzzy_1.00,fuzzy_match
+savi gemfibrozil,45,gemfibrozil,C10AB04,fuzzy_1.00,fuzzy_match
+savi glipizide,90,glipizide,A10BB07,high,manual_dict
+savi ivabradine,130,ivabradine,C01EB17,high,manual_dict
+savi losartan,1,losartan,C09CA01,high,manual_dict
+savi mesalazine 500,130,mesalazine,A07EC02,fuzzy_1.00,fuzzy_match
+savi sertraline,183,sertraline,N06AB06,high,manual_dict
+savi valsartan,45,valsartan,C09CA03,high,manual_dict
+savidimin,270,stavudine,J05AF04,fuzzy_0.67,fuzzy_match
+savidimin (500mg),38,,,,
+savimetoc,665,,,,
+savinapeso,39,,,,
+savitelmihct,250,telmisartan and diuretics,C09DA07,high,manual_dict
+savnopain,588,alvimopan,A06AH02,fuzzy_0.67,fuzzy_match
+scolanzo,10,,,,
+seacaminfort,37,,,,
+seazimin,489,isepamicin,J01GB11,fuzzy_0.67,fuzzy_match
+seractil,29,sertindole,N05AE03,fuzzy_0.67,fuzzy_match
+seretide evohaler dc,169,,,,
+seropin,68,reserpine,C02AA02,fuzzy_0.75,fuzzy_match
+silverzinc,2043,zinc,A12CB,medium,manual_dict
+silymax complex,43,,,,
+simecol,239,dimercaprol,V03AB09,fuzzy_0.67,fuzzy_match
+simvastatin savi,1542,simvastatin,C10AA01,high,manual_dict
+siro ho haspan,2210,cough preparation,R05,medium,manual_dict
+sita-met tablets 50/1000 50mg/,9,,,,
+sitavia,46,,,,
+sitomet,8,ritiometan,R01AX05,fuzzy_0.71,fuzzy_match
+smail,387,,,,
+smecta,32,,,,
+smodir-dt,283,,,,
+solamup 60,22,,,,
+soliqua solostar,2,,,,
+soravar,2,,,,
+sorbitol,2,sorbitol,A06AD18,fuzzy_1.00,fuzzy_match
+soshydra,14,,,,
+sovalimus,2,sirolimus,L04AA10,fuzzy_0.78,fuzzy_match
+sovasol,24,sotalol,C07AA07,fuzzy_0.71,fuzzy_match
+spinolac fort,342,spironolactone,C03DA01,fuzzy_0.67,fuzzy_match
+spiriva respimat,35,,,,
+spirovell,26,buspirone,N05BE01,fuzzy_0.67,fuzzy_match
+spulit,18,,,,
+stadlacil,353,tadalafil,G04BE08,fuzzy_0.78,fuzzy_match
+stadnex 20 cap,1790,esomeprazole,A02BC05,high,manual_dict
+stamlo-t,643,sotalol,C07AA07,fuzzy_0.67,fuzzy_match
+stefamlor,1,cefaclor,J01DC04,fuzzy_0.71,fuzzy_match
+stilaren 50mg,9,,,,
+stradiras,8,estradiol,G03CA03,fuzzy_0.67,fuzzy_match
+stresam,6,somatrem,H01AC02,fuzzy_0.67,fuzzy_match
+sucrafil suspension,512,sucralfate,A02BX02,high,manual_dict
+sudagon,1,glucagon,H04AA01,fuzzy_0.67,fuzzy_match
+sumakin,60,sumatriptan,N02CC01,fuzzy_0.67,fuzzy_match
+sumamigren,5,,,,
+sun-levorizin,578,levocetirizine,R06AE09,fuzzy_0.67,fuzzy_match
+sunbrella spf30,5,,,,
+suplizinc,2,zinc,A12CB,medium,manual_dict
+susol,131,,,,
+sybrava,1,,,,
+symbicort rapihaler,31,,,,
+symbicort turbuhaler,16,,,,
+syseye,121,,,,
+syxten,234,,,,
+súc họng miệng plasmakare chai,585,,,,
+sủi,8,,,,
+sủi abbsin 200,2,,,,
+sủi bactamox,1,sulbactam,J01CG01,fuzzy_0.67,fuzzy_match
+sủi biocemet dt,1,cefixime,J01DD08,high,manual_dict
+sủi clarisol-500,1,,,,
+sủi mft- cefaclor,5,cefaclor,J01DC04,fuzzy_1.00,fuzzy_match
+sủi savimetoc,1,,,,
+sủi tunadimet,1,clopidogrel,B01AC04,high,manual_dict
+sủi vilason-50,1,,,,
+tadalafil,24,tadalafil,G04BE08,fuzzy_1.00,fuzzy_match
+taflotan,106,halothane,N01AB01,fuzzy_0.71,fuzzy_match
+tahero,617,tegaserod,A06AX06,fuzzy_0.67,fuzzy_match
+tamifine,1,amifostine,V03AF05,fuzzy_0.78,fuzzy_match
+tamvelier,132,,,,
+tanganil,498,,,,
+tavulop,68,,,,
+taxedac eye drops (25mg,19,,,,
+tazoretin c,10,tiazotic acid,C01EB23,fuzzy_0.67,fuzzy_match
+tazoretin gel,9,tiazofurine,L01XX18,fuzzy_0.67,fuzzy_match
+tefostad t300,9,,,,
+telmisartan,8,telmisartan,C09CA07,high,manual_dict
+telodrop mỗi,26,,,,
+tenafin,284,butenafine,D01AE23,fuzzy_0.82,fuzzy_match
+tenafine cream,46,butenafine,D01AE23,fuzzy_0.89,fuzzy_match
+tenfovix,12,,,,
+tenonic,6,tenoxicam,M01AC02,fuzzy_0.75,fuzzy_match
+teperinep,80,gepefrine,C01CA15,fuzzy_0.78,fuzzy_match
+tetracyclin,92,tetracycline,A01AB13,fuzzy_0.96,fuzzy_match
+thazolxen,83,thiamazole,H03BB02,fuzzy_0.74,fuzzy_match
+theresol,3,others,D11AC30,fuzzy_0.71,fuzzy_match
+theroflan,379,iotrolan,V08AB06,fuzzy_0.71,fuzzy_match
+thiamazol,23,thiamazole,H03BB02,fuzzy_0.95,fuzzy_match
+"thuốc ho người lớn opc (16,2g",125,,,,
+"thuốc ho trẻ em opc (16,2g",229,,,,
+thuốc mỡ potamus,4,,,,
+thuốc trĩ tomoko,9,,,,
+thyrozol,349,letrozole,L02BG04,fuzzy_0.71,fuzzy_match
+thytodux,6,,,,
+thập toàn đại bổ (908mg,40,,,,
+thụt táo bón endolax,2,,,,
+thụt táo bón endolax kids,2,,,,
+tiffy syrup (120mg,1,,,,
+timolol,43,timolol,C07AA06,fuzzy_1.00,fuzzy_match
+tiphapred e,133,methylprednisolone,H02AB04,high,manual_dict
+tiphapred m,1850,methylprednisolone,H02AB04,high,manual_dict
+tobidex,2,itopride,A03FA07,fuzzy_0.67,fuzzy_match
+tobidex (15mg,20,,,,
+tobradex,216,torasemide,C03CA04,fuzzy_0.67,fuzzy_match
+tobramycin,13,tobramycin,J01GB01,fuzzy_1.00,fuzzy_match
+tobrex,121,,,,
+tofisopam,219,tofisopam,N05BA23,fuzzy_1.00,fuzzy_match
+topamax,4,topiramate,N03AX11,fuzzy_0.71,fuzzy_match
+toricam capsules,897,piroxicam,M01AC01,high,manual_dict
+totcal soft capsule,130,,,,
+toujeo solostar+10 đầu kim pen ndl,249,,,,
+tracardis,1526,telmisartan,C09CA07,high,manual_dict
+tradalen,29,adapalene,D10AD03,fuzzy_0.71,fuzzy_match
+tramazetan plus,17,,,,
+traulen,34,trioxysalen,D05AD01,fuzzy_0.67,fuzzy_match
+travatan,88,pravastatin,C10AA03,fuzzy_0.74,fuzzy_match
+trihexyphenidyl,101,trihexyphenidyl,N04AA01,fuzzy_1.00,fuzzy_match
+trileptal,1,triheptanoin,A16AX17,fuzzy_0.67,fuzzy_match
+trimoxtal,31,trioxysalen,D05AD01,fuzzy_0.70,fuzzy_match
+trolimax,14,tacrolimus,D11AH01,fuzzy_0.67,fuzzy_match
+troxipe,59,troxipide,A02BX11,fuzzy_0.88,fuzzy_match
+tumegas,9,,,,
+tunadimet,5587,clopidogrel,B01AC04,high,manual_dict
+turbe,25,,,,
+turbezid,18,,,,
+ubinutro (30mg,242,,,,
+udexcale,64,,,,
+uformat,14,buformin,A10BA03,fuzzy_0.67,fuzzy_match
+ulcogen,103,collagen,B02BC07,fuzzy_0.67,fuzzy_match
+uperio,136,eperisone,M03BX09,fuzzy_0.67,fuzzy_match
+ursobil,12,sorbitol,A06AD18,fuzzy_0.67,fuzzy_match
+usaralphar,1251,amoxicillin,J01CA04,high,manual_dict
+usarmicin,50,isepamicin,J01GB11,fuzzy_0.74,fuzzy_match
+utrogestan,18,trilostane,H02CA01,fuzzy_0.70,fuzzy_match
+vaco loratadine,175,loratadine,R06AX13,high,manual_dict
+vagsur,2,,,,
+valcickeck h2,10,,,,
+valdes,21,,,,
+valsgim,1506,valsartan,C09CA03,high,manual_dict
+valsgim-h,1337,valsartan,C09CA03,high,manual_dict
+varonem,27,faropenem,J01DI03,fuzzy_0.75,fuzzy_match
+vastanic,1476,atorvastatin,C10AA05,high,manual_dict
+vastarel mr tab,25,,,,
+vein plus,42,,,,
+venlafaxine stella,172,venlafaxine,N06AX16,high,manual_dict
+venosan retard,106,,,,
+ventolin inh,3,salbutamol,R03AC02,high,manual_dict
+ventolin inhaler,69,salbutamol,R03AC02,high,manual_dict
+vesicare,8,,,,
+vesifix,85,,,,
+vicebrol,177,niceritrol,C10AD01,fuzzy_0.67,fuzzy_match
+vietlife bình an,2,,,,
+vigamox,107,,,,
+vigentin,50,trientine,A16AX12,fuzzy_0.71,fuzzy_match
+vilason-50,376,,,,
+vincerol,66,indacaterol,R03AC18,fuzzy_0.74,fuzzy_match
+vincestad,93,,,,
+vinfoxin,636,sertraline,N06AB06,high,manual_dict
+vinoaci,2,cinoxacin,J01MB06,fuzzy_0.75,fuzzy_match
+vinocyclin,2,minocycline,A01AB23,fuzzy_0.86,fuzzy_match
+vinpocetin danapha,48,vinpocetine,N06BX18,fuzzy_0.95,fuzzy_match
+vinsalamin 500,19,,,,
+vitasun tab,37,,,,
+vitatrum - b complex vitamin b1 (thiamin mononitrat) 5mg; vitamin b2 (riboflavin) 2mg; vitamin b6 (pyridoxin hydroclorid) 2mg; vitamin pp (nicotinamid),14,vitamin b complex,A11EA,medium,manual_dict
+viên hộ tâm opcardio,2,,,,
+viên nang sâm nhung ht,4,,,,
+viên nhuận tràng op.liz,5,,,,
+vt-amlopril,552,,,,
+wamlox,11,amlexanox,A01AD07,fuzzy_0.67,fuzzy_match
+winde 25,1,,,,
+winfla,134,,,,
+winmus,196,,,,
+winprid,9,itopride,A03FA07,fuzzy_0.67,fuzzy_match
+wizosone,562,cefpodoxime,J01DD13,high,manual_dict
+wosulin,801,dosulepin,N06AA16,fuzzy_0.75,fuzzy_match
+wzitamy tm (viên đặt âm đạo),153,,,,
+xalgetz,407,,,,
+xarelto tab,4,,,,
+xuthapirid,23,tiapride,N05AL03,fuzzy_0.67,fuzzy_match
+xyzsac,15,,,,
+xịt,76,,,,
+xịt a.t calci sac,1,calcium,A12AA,medium,manual_dict
+xịt a.t nicorandil,1,nicorandil,C01DX16,high,manual_dict
+xịt acigmentin,8,amoxicillin and enzyme inhibitor,J01CR02,high,manual_dict
+xịt amaloris,1,amlodipine,C08CA01,high,manual_dict
+xịt apitim,2,amlodipine,C08CA01,high,manual_dict
+xịt atoris,1,atorvastatin,C10AA05,high,manual_dict
+xịt ausmuco 750v,2,,,,
+xịt bicelor 375 dt.,2,cefaclor,J01DC04,high,manual_dict
+xịt biocemet sc,1,cefixime,J01DD08,high,manual_dict
+xịt bioketoca,1,,,,
+xịt bluecan forte,1,candesartan,C09CA06,high,manual_dict
+xịt bromhexin,1,bromhexine,R05CB02,fuzzy_0.95,fuzzy_match
+xịt calciferat,1,calcium and vitamin d,A12AX,high,manual_dict
+xịt camzitol,1,,,,
+xịt capsicin gel,3,,,,
+xịt carbocistein,24,carbocisteine,R05CB03,fuzzy_0.96,fuzzy_match
+xịt cefcenat,1,ceftriaxone,J01DD04,high,manual_dict
+xịt combiwave fb 200 (200mcg,4,,,,
+xịt dacolfort,1,diosmin,C05CA03,high,manual_dict
+xịt desbebe,1,,,,
+xịt dialamic,1,,,,
+xịt dixirein tab,13,ambroxol,R05CB06,high,manual_dict
+xịt dogrelsavi,4,clopidogrel,B01AC04,high,manual_dict
+xịt drotusc,1,dextromethorphan,R05DA09,high,manual_dict
+xịt dryches,2,,,,
+xịt entacron,1,,,,
+xịt esomeprazol,2,esomeprazole,A02BC05,fuzzy_0.96,fuzzy_match
+xịt fezidat,1,,,,
+xịt fluvastatin,1,fluvastatin,C10AA04,fuzzy_1.00,fuzzy_match
+xịt gastevin,3,esomeprazole,A02BC05,high,manual_dict
+xịt genituk,3,,,,
+xịt glumeform,1,metformin,A10BA02,high,manual_dict
+xịt hoastex,1,herbal cough preparation,R05X,high,manual_dict
+xịt imedoxim,1,,,,
+xịt imerixx,5,trimebutine,A03AA05,high,manual_dict
+xịt isoday,1,pantoprazole,A02BC02,high,manual_dict
+xịt ivagim,1,,,,
+xịt kaflovo,1,levofloxacin,J01MA12,high,manual_dict
+xịt kapredin,4,cefuroxime,J01DC02,high,manual_dict
+xịt kavasdin,3,amlodipine,C08CA01,high,manual_dict
+xịt lacisartan hct,1,losartan,C09CA01,high,manual_dict
+xịt lipanthyl 200m,2,fenofibrate,C10AB05,high,manual_dict
+xịt lipitor,1,atorvastatin,C10AA05,high,manual_dict
+xịt losartan dwp,2,losartan,C09CA01,high,manual_dict
+xịt medoome,1,,,,
+xịt melopower,1,,,,
+xịt meyerexcold,1,cold preparation,R05X,high,manual_dict
+xịt midantin,17,amoxicillin and enzyme inhibitor,J01CR02,high,manual_dict
+xịt mitiquapril,1,quinapril,C09AA06,high,manual_dict
+xịt montelukast normon,23,montelukast,R03DC03,high,manual_dict
+xịt novahexin,3,,,,
+xịt osvimec,1,,,,
+xịt partamol tab.,1,paracetamol,N02BE01,high,manual_dict
+xịt ripratine,2,teriparatide,H05AA02,fuzzy_0.72,fuzzy_match
+xịt seretide evohaler dc,37,,,,
+xịt simvastatin savi,1,simvastatin,C10AA01,high,manual_dict
+xịt siro ho haspan,1,cough preparation,R05,medium,manual_dict
+xịt spinolac fort,2,,,,
+xịt spiriva respimat,10,,,,
+xịt stadnex 20 cap,1,esomeprazole,A02BC05,high,manual_dict
+xịt symbicort rapihaler,5,,,,
+xịt syxten,12,,,,
+xịt tai etikon,78,,,,
+xịt tunadimet,4,clopidogrel,B01AC04,high,manual_dict
+xịt vaco loratadine,1,loratadine,R06AX13,high,manual_dict
+xịt valsgim-h,3,valsartan,C09CA03,high,manual_dict
+xịt vastanic,2,atorvastatin,C10AA05,high,manual_dict
+xịt ventolin inhaler,60,salbutamol,R03AC02,high,manual_dict
+xịt zaromax,1,azithromycin,J01FA10,high,manual_dict
+"xịt zencombi (2,5mg",1,,,,
+xịt zinkast,3,,,,
+ysp- biotase,27,,,,
+ysp-biotase,61,,,,
+zalenka,12,zaleplon,N05CF03,fuzzy_0.67,fuzzy_match
+zaromax,453,azithromycin,J01FA10,high,manual_dict
+zebacef,11,,,,
+zebalos,9,,,,
+zemfuva,23,,,,
+"zencombi (2,5mg",24,,,,
+zinkast,414,zafirlukast,R03DC01,fuzzy_0.67,fuzzy_match
+zinnat suspension,1,,,,
+zinsol,430,mazindol,A08AA05,fuzzy_0.71,fuzzy_match
+zokicetam,61,oxiracetam,N06BX07,fuzzy_0.74,fuzzy_match
+zolmed,484,,,,
+zopinox,526,zotepine,N05AX11,fuzzy_0.67,fuzzy_match
+zy-10 forte,6,,,,
+zynadex,79,,,,
+zynadex 40,18,,,,
+đầu kim novofine,236,,,,
+đầu kim pen ndl,251,,,,
+đặt âm đạo,71,,,,
+đặt âm đạo anbaescin,2,,,,
+đặt âm đạo candisafe,50,,,,
+đặt âm đạo gel dùng ngoài mangizeni,69,,,,
+đặt âm đạo metronidazol,21,metronidazole,A01AB17,fuzzy_0.96,fuzzy_match
+đặt âm đạo salgad,3,,,,
+đặt âm đạo zolmed,2,,,,
+β-hist,42,,,,

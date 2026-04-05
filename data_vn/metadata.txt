@@ -1,0 +1,4 @@
+icd atc
+1493 377
+1 1
+embed_vn/icd_embeddings.npy embed_vn/atc_embeddings.npy
