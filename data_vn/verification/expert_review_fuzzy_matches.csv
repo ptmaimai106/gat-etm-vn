@@ -1,0 +1,31 @@
+﻿drug_name,atc_code,generic_name,count,confidence
+esomeprazol,A02BC05,esomeprazole,5497,fuzzy_0.96
+ripratine,N05AX15,cariprazine,2303,fuzzy_0.80
+glimsure,G02CB02,lisuride,1520,fuzzy_0.75
+fluvastatin dwp,C10AA04,fluvastatin,1368,fuzzy_1.00
+capsicin gel,M02AB01,capsaicin,1077,fuzzy_0.76
+idatril,C09AA16,imidapril,954,fuzzy_0.75
+entacron,N04BX02,entacapone,927,fuzzy_0.78
+wosulin,N06AA16,dosulepin,801,fuzzy_0.75
+fluvastatin,C10AA04,fluvastatin,775,fuzzy_1.00
+gliclada,A10BB09,gliclazide,766,fuzzy_0.78
+sadapron,A06AB03,dantron,729,fuzzy_0.67
+metronidazol,A01AB17,metronidazole,718,fuzzy_0.96
+stamlo-t,C07AA07,sotalol,643,fuzzy_0.67
+debomin,D08AK04,merbromin,640,fuzzy_0.75
+olanxol,C05BB02,polidocanol,640,fuzzy_0.67
+camzitol,A11CC04,calcitriol,634,fuzzy_0.67
+benfosafe,A11DA03,benfotiamine,627,fuzzy_0.67
+tahero,A06AX06,tegaserod,617,fuzzy_0.67
+famodin,A02BA03,famotidine,612,fuzzy_0.82
+agimstan,C09CA10,fimasartan,607,fuzzy_0.67
+mitipizid,A10BX08,mitiglinide,605,fuzzy_0.70
+ezechol,N07AB02,bethanechol,599,fuzzy_0.67
+nitidine,A02BA02,ranitidine,589,fuzzy_0.89
+savnopain,A06AH02,alvimopan,588,fuzzy_0.67
+sun-levorizin,R06AE09,levocetirizine,578,fuzzy_0.67
+dipatin,L01XA01,cisplatin,560,fuzzy_0.75
+pracetam,N06BX03,piracetam,531,fuzzy_0.94
+zopinox,N05AX11,zotepine,526,fuzzy_0.67
+fumagate,A02AD03,almagate,525,fuzzy_0.75
+mft- cefaclor,J01DC04,cefaclor,515,fuzzy_1.00

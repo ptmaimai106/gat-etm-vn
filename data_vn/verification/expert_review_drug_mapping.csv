@@ -1,0 +1,51 @@
+﻿drug_name,atc_code,generic_name,count,confidence,method
+agicardi,B01AC06,acetylsalicylic acid,8577,high,manual_dict
+partamol tab.,N02BE01,paracetamol,6955,high,manual_dict
+atorvastatin,C10AA05,atorvastatin,6946,high,manual_dict
+tunadimet,B01AC04,clopidogrel,5587,high,manual_dict
+esomeprazol,A02BC05,esomeprazole,5497,fuzzy_0.96,fuzzy_match
+kapredin,J01DC02,cefuroxime,5054,high,manual_dict
+concor cor,C07AB07,bisoprolol,4043,high,manual_dict
+atisyrup zinc,A12CB,zinc preparations,3787,high,manual_dict
+glumeform,A10BA02,metformin,3666,high,manual_dict
+dacolfort,C05CA03,diosmin,3660,high,manual_dict
+rotinvast,C10AA07,rosuvastatin,3411,high,manual_dict
+lacisartan hct,C09CA01,losartan,3279,high,manual_dict
+dogrelsavi,B01AC04,clopidogrel,3209,high,manual_dict
+midantin,J01CR02,amoxicillin and enzyme inhibitor,2793,high,manual_dict
+calciferat,A12AX,calcium and vitamin d,2769,high,manual_dict
+gastevin,A02BC05,esomeprazole,2665,high,manual_dict
+losartan dwp,C09CA01,losartan,2614,high,manual_dict
+pharbacol,N02BE01,paracetamol,2505,high,manual_dict
+imerixx,A03AA05,trimebutine,2480,high,manual_dict
+methocarbamol mcn,M03BA03,methocarbamol,2360,high,manual_dict
+lowsta,C10AA05,atorvastatin,2350,high,manual_dict
+betahistin,N07CA01,betahistine,2333,high,manual_dict
+ripratine,N05AX15,cariprazine,2303,fuzzy_0.80,fuzzy_match
+atirin suspension,N02BE01,paracetamol,2212,high,manual_dict
+siro ho haspan,R05,cough preparation,2210,medium,manual_dict
+hapacol,N02BE01,paracetamol,2150,high,manual_dict
+kavasdin,C08CA01,amlodipine,2149,high,manual_dict
+ridolip s,C10AA07,rosuvastatin,2145,high,manual_dict
+silverzinc,A12CB,zinc,2043,medium,manual_dict
+apitim,C08CA01,amlodipine,1946,high,manual_dict
+bolabio 10^9 cfu,A07FA01,lactobacillus,1890,high,manual_dict
+amaloris,C08CA01,amlodipine,1878,high,manual_dict
+etoricoxib,M01AH05,etoricoxib,1866,high,manual_dict
+tiphapred m,H02AB04,methylprednisolone,1850,high,manual_dict
+stadnex 20 cap,A02BC05,esomeprazole,1790,high,manual_dict
+hoastex,R05X,herbal cough preparation,1775,high,manual_dict
+gabapentin,N03AX12,gabapentin,1693,high,manual_dict
+fefasdin,R06AX26,fexofenadine,1675,high,manual_dict
+huntelaar,C09CA01,losartan,1625,high,manual_dict
+simvastatin savi,C10AA01,simvastatin,1542,high,manual_dict
+jardiance,A10BK03,empagliflozin,1529,high,manual_dict
+tracardis,C09CA07,telmisartan,1526,high,manual_dict
+glimsure,G02CB02,lisuride,1520,fuzzy_0.75,fuzzy_match
+valsgim,C09CA03,valsartan,1506,high,manual_dict
+drotusc forte,R05DA09,dextromethorphan,1499,high,manual_dict
+etofride 50,M01AH05,etoricoxib,1477,high,manual_dict
+vastanic,C10AA05,atorvastatin,1476,high,manual_dict
+apixodin dt,R06AX27,desloratadine,1458,high,manual_dict
+aspirin,B01AC06,acetylsalicylic acid,1431,high,manual_dict
+a.t hoạt huyết dưỡng,V,herbal preparation,1396,medium,manual_dict

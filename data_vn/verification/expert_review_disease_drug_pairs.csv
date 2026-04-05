@@ -1,0 +1,101 @@
+﻿icd_code,atc_code,count,icd_desc,atc_desc
+E78.2,C10AA05,1643,Tăng lipid máu hỗn hợp,Atorvastatin (hạ lipid)
+I10,C10AA05,1498,Tăng huyết áp vô căn,Atorvastatin (hạ lipid)
+K21,A02BC05,1362,Trào ngược dạ dày-thực quản,Esomeprazole (PPI)
+I10,B01AC06,1328,Tăng huyết áp vô căn,Aspirin (chống kết tập TC)
+E78.2,B01AC06,1305,Tăng lipid máu hỗn hợp,Aspirin (chống kết tập TC)
+E78.2,B01AC04,1198,Tăng lipid máu hỗn hợp,Clopidogrel (chống kết tập TC)
+I10,B01AC04,1149,Tăng huyết áp vô căn,Clopidogrel (chống kết tập TC)
+I10,C09CA01,1038,Tăng huyết áp vô căn,Losartan (ARB)
+E78.2,C09CA01,966,Tăng lipid máu hỗn hợp,Losartan (ARB)
+I10,C08CA01,938,Tăng huyết áp vô căn,Amlodipine (CCB)
+E78.2,C10AA07,909,Tăng lipid máu hỗn hợp,Rosuvastatin (hạ lipid)
+E78.2,A10BA02,870,Tăng lipid máu hỗn hợp,Metformin (ĐTĐ)
+E78.2,C08CA01,864,Tăng lipid máu hỗn hợp,Amlodipine (CCB)
+I10,C10AA07,856,Tăng huyết áp vô căn,Rosuvastatin (hạ lipid)
+I25.0,B01AC04,798,Bệnh tim thiếu máu xơ vữa,Clopidogrel (chống kết tập TC)
+I10,A10BA02,784,Tăng huyết áp vô căn,Metformin (ĐTĐ)
+E11.9,A10BA02,761,"ĐTĐ type 2, không biến chứng",Metformin (ĐTĐ)
+I10,C07AB07,751,Tăng huyết áp vô căn,
+E78.2,C07AB07,736,Tăng lipid máu hỗn hợp,
+J30.3,N02BE01,619,,Paracetamol (giảm đau)
+I25.0,B01AC06,591,Bệnh tim thiếu máu xơ vữa,Aspirin (chống kết tập TC)
+E11.9,C10AA05,550,"ĐTĐ type 2, không biến chứng",Atorvastatin (hạ lipid)
+J02,N02BE01,529,,Paracetamol (giảm đau)
+I25.0,C10AA05,506,Bệnh tim thiếu máu xơ vữa,Atorvastatin (hạ lipid)
+E11.9,B01AC06,455,"ĐTĐ type 2, không biến chứng",Aspirin (chống kết tập TC)
+K21,B01AC04,448,Trào ngược dạ dày-thực quản,Clopidogrel (chống kết tập TC)
+I10,C09CA03,445,Tăng huyết áp vô căn,
+K21,N02BE01,443,Trào ngược dạ dày-thực quản,Paracetamol (giảm đau)
+I25.0,C10AA07,431,Bệnh tim thiếu máu xơ vữa,Rosuvastatin (hạ lipid)
+E78.2,A02BC05,430,Tăng lipid máu hỗn hợp,Esomeprazole (PPI)
+K21,C10AA05,424,Trào ngược dạ dày-thực quản,Atorvastatin (hạ lipid)
+E78.2,C09CA03,424,Tăng lipid máu hỗn hợp,
+E11.9,B01AC04,416,"ĐTĐ type 2, không biến chứng",Clopidogrel (chống kết tập TC)
+I10,A02BC05,403,Tăng huyết áp vô căn,Esomeprazole (PPI)
+M25.5,N02BE01,395,,Paracetamol (giảm đau)
+K52,A02BC05,382,,Esomeprazole (PPI)
+I87.2,C05CA03,366,,
+L20,A12CB,358,,
+E11.9,C09CA01,357,"ĐTĐ type 2, không biến chứng",Losartan (ARB)
+I25.0,C09CA01,355,Bệnh tim thiếu máu xơ vữa,Losartan (ARB)
+I25.0,C08CA01,347,Bệnh tim thiếu máu xơ vữa,Amlodipine (CCB)
+J30.3,J01CR02,347,,
+K21,B01AC06,347,Trào ngược dạ dày-thực quản,Aspirin (chống kết tập TC)
+J30.3,J01DC02,338,,
+E78.2,C10AA04,335,Tăng lipid máu hỗn hợp,
+E78.2,A10BK03,332,Tăng lipid máu hỗn hợp,
+I10,A10BK03,317,Tăng huyết áp vô căn,
+K52,R05DA09,317,,
+M25.5,A02BC05,313,,Esomeprazole (PPI)
+K29,A02BC05,313,Viêm dạ dày-tá tràng,Esomeprazole (PPI)
+I25.0,C07AB07,311,Bệnh tim thiếu máu xơ vữa,
+I25,C10AA05,304,,Atorvastatin (hạ lipid)
+E11.9,C08CA01,304,"ĐTĐ type 2, không biến chứng",Amlodipine (CCB)
+I10,C09CA07,296,Tăng huyết áp vô căn,
+I10,C10AA04,296,Tăng huyết áp vô căn,
+I25,B01AC04,292,,Clopidogrel (chống kết tập TC)
+I10,C05CA03,291,Tăng huyết áp vô căn,
+E11.9,C10AA07,289,"ĐTĐ type 2, không biến chứng",Rosuvastatin (hạ lipid)
+K21,C10AA07,283,Trào ngược dạ dày-thực quản,Rosuvastatin (hạ lipid)
+E58,A12AX,283,,
+K21,M01AH05,282,Trào ngược dạ dày-thực quản,
+J02,J01CR02,282,,
+I10,C09CA06,281,Tăng huyết áp vô căn,
+J30.3,N05AX15,279,,
+J02,R05X,279,,
+E78.2,C05CA03,279,Tăng lipid máu hỗn hợp,
+E78.2,C09CA07,274,Tăng lipid máu hỗn hợp,
+H81,N07CA01,271,Rối loạn chức năng tiền đình,
+K21,R05DA09,268,Trào ngược dạ dày-thực quản,
+K30,A12CB,261,,
+K21,C07AB07,256,Trào ngược dạ dày-thực quản,
+E56,A12CB,253,,
+J02,J01DC02,251,,
+E78.2,C09CA06,250,Tăng lipid máu hỗn hợp,
+J20,J01CR02,249,Viêm phế quản cấp,
+K21,C09CA01,245,Trào ngược dạ dày-thực quản,Losartan (ARB)
+J30.3,R05X,245,,
+E78.2,C10AA01,238,Tăng lipid máu hỗn hợp,
+I25.0,A10BA02,236,Bệnh tim thiếu máu xơ vữa,Metformin (ĐTĐ)
+J20,N02BE01,235,Viêm phế quản cấp,Paracetamol (giảm đau)
+I20,B01AC04,231,,Clopidogrel (chống kết tập TC)
+K21,C08CA01,228,Trào ngược dạ dày-thực quản,Amlodipine (CCB)
+J02,A12CB,228,,
+E11.9,C07AB07,220,"ĐTĐ type 2, không biến chứng",
+J30.3,A03AA05,219,,
+I25.0,A02BC05,217,Bệnh tim thiếu máu xơ vữa,Esomeprazole (PPI)
+I10,C10AA01,217,Tăng huyết áp vô căn,
+I25,B01AC06,215,,Aspirin (chống kết tập TC)
+J30.3,A12CB,210,,
+J02,R05,208,,
+H81,C10AA05,199,Rối loạn chức năng tiền đình,Atorvastatin (hạ lipid)
+E11.9,A10BK03,197,"ĐTĐ type 2, không biến chứng",
+E78.2,G02CB02,194,Tăng lipid máu hỗn hợp,
+H81,B01AC04,192,Rối loạn chức năng tiền đình,Clopidogrel (chống kết tập TC)
+J30.3,R05,191,,
+E58,A02BC05,186,,Esomeprazole (PPI)
+I87.2,B01AC04,186,,Clopidogrel (chống kết tập TC)
+J02,A03AA05,182,,
+J02,N05AX15,180,,
+I25,C09CA01,180,,Losartan (ARB)

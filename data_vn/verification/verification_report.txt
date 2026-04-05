@@ -1,0 +1,224 @@
+============================================================
+DATA VERIFICATION REPORT FOR GAT-ETM
+============================================================
+
+Generated: 2026-04-05 16:30:59.516093
+
+============================================================
+1. BOW MATRICES VERIFICATION
+============================================================
+
+Training set:
+  Shape: (49184, 1870)
+  Non-zero entries: 339091
+  Density: 0.3687%
+
+Test set:
+  Shape: (21080, 1870)
+  Non-zero entries: 145915
+  Density: 0.3702%
+
+Codes per patient (train):
+  Min: 2
+  Max: 19
+  Mean: 6.89
+  Median: 6
+
+ICD codes per patient (train):
+  Mean: 3.42, Median: 3
+
+ATC codes per patient (train):
+  Mean: 3.47, Median: 3
+
+⚠️ Empty rows in training: 0
+
+============================================================
+2. VOCABULARY VERIFICATION
+============================================================
+
+Vocabulary sizes:
+  ICD codes: 1493
+  ATC codes: 377
+  Total: 1870
+
+ICD format validation:
+  Valid format: 1493/1493
+
+ATC format validation:
+  Valid format: 376/377
+
+ICD categories distribution:
+  A: 39
+  B: 47
+  C: 29
+  D: 84
+  E: 82
+  F: 65
+  G: 77
+  H: 107
+  I: 149
+  J: 71
+  K: 132
+  L: 83
+  M: 120
+  N: 90
+  O: 20
+  P: 2
+  Q: 19
+  R: 58
+  S: 140
+  T: 31
+  W: 5
+  X: 1
+  Y: 1
+  Z: 41
+
+ATC level 1 distribution:
+  A: 78
+  B: 18
+  C: 62
+  D: 22
+  G: 9
+  H: 8
+  J: 34
+  L: 17
+  M: 26
+  N: 59
+  P: 3
+  R: 27
+  S: 5
+  V: 9
+
+============================================================
+3. DRUG-ATC MAPPING (CẦN CHUYÊN GIA Y TẾ KIỂM TRA)
+============================================================
+
+Mapping statistics:
+  Total drugs: 1075
+  Mapped: 585 (54.4%)
+
+By mapping method:
+  fuzzy_match: 328
+  manual_dict: 257
+
+📋 FILE CHO CHUYÊN GIA: data_vn/verification/expert_review_drug_mapping.csv
+   → Kiểm tra 50 thuốc phổ biến nhất, xác nhận ATC code đúng
+📋 FILE CHO CHUYÊN GIA: data_vn/verification/expert_review_fuzzy_matches.csv
+   → Kiểm tra fuzzy matches (có thể sai)
+
+============================================================
+4. DISEASE-DRUG PAIRS (CẦN CHUYÊN GIA Y TẾ KIỂM TRA)
+============================================================
+
+Đang tính toán disease-drug co-occurrences...
+
+Total disease-drug pairs: 13649
+Pairs with count >= 100: 218
+
+📋 FILE CHO CHUYÊN GIA: data_vn/verification/expert_review_disease_drug_pairs.csv
+   → Kiểm tra 100 cặp bệnh-thuốc phổ biến nhất
+   → Xác nhận các cặp này có clinically meaningful không
+
+TOP 20 DISEASE-DRUG PAIRS:
+----------------------------------------------------------------------
+  E78.2 (Tăng lipid máu hỗn hợp) - C10AA05 (Atorvastatin (hạ lipid)): 1643
+  I10 (Tăng huyết áp vô căn) - C10AA05 (Atorvastatin (hạ lipid)): 1498
+  K21 (Trào ngược dạ dày-thực quản) - A02BC05 (Esomeprazole (PPI)): 1362
+  I10 (Tăng huyết áp vô căn) - B01AC06 (Aspirin (chống kết tập TC)): 1328
+  E78.2 (Tăng lipid máu hỗn hợp) - B01AC06 (Aspirin (chống kết tập TC)): 1305
+  E78.2 (Tăng lipid máu hỗn hợp) - B01AC04 (Clopidogrel (chống kết tập TC)): 1198
+  I10 (Tăng huyết áp vô căn) - B01AC04 (Clopidogrel (chống kết tập TC)): 1149
+  I10 (Tăng huyết áp vô căn) - C09CA01 (Losartan (ARB)): 1038
+  E78.2 (Tăng lipid máu hỗn hợp) - C09CA01 (Losartan (ARB)): 966
+  I10 (Tăng huyết áp vô căn) - C08CA01 (Amlodipine (CCB)): 938
+  E78.2 (Tăng lipid máu hỗn hợp) - C10AA07 (Rosuvastatin (hạ lipid)): 909
+  E78.2 (Tăng lipid máu hỗn hợp) - A10BA02 (Metformin (ĐTĐ)): 870
+  E78.2 (Tăng lipid máu hỗn hợp) - C08CA01 (Amlodipine (CCB)): 864
+  I10 (Tăng huyết áp vô căn) - C10AA07 (Rosuvastatin (hạ lipid)): 856
+  I25.0 (Bệnh tim thiếu máu xơ vữa) - B01AC04 (Clopidogrel (chống kết tập TC)): 798
+  I10 (Tăng huyết áp vô căn) - A10BA02 (Metformin (ĐTĐ)): 784
+  E11.9 (ĐTĐ type 2, không biến chứng) - A10BA02 (Metformin (ĐTĐ)): 761
+  I10 (Tăng huyết áp vô căn) - C07AB07: 751
+  E78.2 (Tăng lipid máu hỗn hợp) - C07AB07: 736
+  J30.3 - N02BE01 (Paracetamol (giảm đau)): 619
+
+============================================================
+5. SAMPLE PATIENT RECORDS (CẦN CHUYÊN GIA Y TẾ KIỂM TRA)
+============================================================
+
+📋 FILE CHO CHUYÊN GIA: data_vn/verification/expert_review_sample_patients.csv
+   → Kiểm tra 20 bệnh nhân mẫu
+   → Xác nhận ICD codes và ATC codes có hợp lý cho cùng bệnh nhân
+
+SAMPLE PATIENTS:
+----------------------------------------------------------------------
+
+Patient 1:
+  ICD (1): Z34.8
+  ATC (1): A12AX
+
+Patient 2:
+  ICD (2): M54; M60
+  ATC (2): M01AH05; N02BE01
+
+Patient 3:
+  ICD (2): M25.5; S83
+  ATC (2): M01AE01; N02BE01
+
+Patient 4:
+  ICD (1): G58.0
+  ATC (3): A02BC05; A11DA03; N02BE01
+
+Patient 5:
+  ICD (2): M10.0; M25.5
+  ATC (3): A02BC05; A06AB03; H02AB04
+
+============================================================
+6. GRAPH STRUCTURE VERIFICATION
+============================================================
+
+Graph statistics:
+  Nodes: 1870
+  Edges: 16119
+  Connected: True
+
+Degree distribution:
+  Min: 1
+  Max: 439
+  Mean: 17.24
+  Median: 3
+  Nodes with degree ≤ 1: 748
+
+============================================================
+SUMMARY: FILES CẦN CHUYÊN GIA Y TẾ KIỂM TRA
+============================================================
+
+1. data_vn/verification/expert_review_drug_mapping.csv
+   → 50 thuốc phổ biến nhất và ATC mapping
+   → Kiểm tra: Tên thuốc VN có đúng với mã ATC không?
+
+2. data_vn/verification/expert_review_fuzzy_matches.csv
+   → Các thuốc được mapping bằng fuzzy matching (có thể sai)
+   → Kiểm tra: Fuzzy match có đúng không? Cần sửa không?
+
+3. data_vn/verification/expert_review_disease_drug_pairs.csv
+   → 100 cặp bệnh-thuốc phổ biến nhất
+   → Kiểm tra: Các cặp ICD-ATC này có hợp lý về mặt lâm sàng không?
+
+4. data_vn/verification/expert_review_sample_patients.csv
+   → 20 bệnh nhân mẫu với ICD và ATC codes
+   → Kiểm tra: Mỗi bệnh nhân có ICD codes và thuốc phù hợp không?
+
+
+============================================================
+VISUALIZATIONS
+============================================================
+
+1. data_vn/verification/viz_codes_distribution.png
+   → Phân bố số codes mỗi bệnh nhân
+
+2. data_vn/verification/viz_code_frequency.png
+   → Phân bố tần suất các codes
+
+3. data_vn/verification/viz_embeddings_tsne.png
+   → t-SNE visualization của embeddings
