@@ -1053,7 +1053,71 @@ Graph:
 3. Graph được augmented để đảm bảo connected (thêm hierarchy edges)
 4. Format output tương thích với main_getm.py
 
-**Next Step:** Phase 6 - Training model với dữ liệu VN
+**Next Step:** ~~Phase 6 - Training model với dữ liệu VN~~ ✅ Đã sẵn sàng
+
+---
+
+### Session 6 (tiếp theo): 2026-04-05 - Data Verification & Training Script
+
+**Đã hoàn thành:**
+- [x] Tạo script `scripts/verify_data.py` để verification data
+- [x] Tạo verification report và files cho expert review
+- [x] Phân tích main_getm.py và graph_etm.py để hiểu data requirements
+- [x] Sửa lỗi PyTorch 2.x sparse tensor collation (custom collate_fn)
+- [x] Tạo `train_vn.py` - training script adapted cho VN data
+- [x] Test training thành công 1 epoch
+
+**Output Verification:**
+```
+data_vn/verification/
+├── verification_report.txt           # Báo cáo tổng hợp
+├── expert_review_drug_mapping.csv    # 50 thuốc phổ biến cần review
+├── expert_review_fuzzy_matches.csv   # Fuzzy matches có thể sai
+├── expert_review_disease_drug_pairs.csv  # 100 cặp ICD-ATC
+├── expert_review_sample_patients.csv # 20 bệnh nhân mẫu
+├── viz_codes_distribution.png        # Visualization
+├── viz_code_frequency.png
+└── viz_embeddings_tsne.png
+```
+
+**Data Statistics:**
+```
+Training set: 49,184 samples × 1,870 codes
+Test set: 21,080 samples × 1,870 codes
+Density: 0.37%
+
+Codes per patient:
+- ICD: mean 3.42, median 3
+- ATC: mean 3.47, median 3
+- Total: mean 6.89, median 6
+
+Graph: 1,870 nodes, 16,119 edges, Connected: Yes
+```
+
+**Vấn đề cần Expert Review:**
+
+1. **Fuzzy Matches có thể sai** (trong `expert_review_fuzzy_matches.csv`):
+   | Drug VN | ATC Mapped | Generic | Confidence |
+   |---------|------------|---------|------------|
+   | wosulin | N06AA16 | dosulepin | 0.75 | ❌ Sai (Wosulin = insulin) |
+   | ripratine | N05AX15 | cariprazine | 0.80 | ❓ |
+   | glimsure | G02CB02 | lisuride | 0.75 | ❓ |
+   | stamlo-t | C07AA07 | sotalol | 0.67 | ❓ |
+
+2. **Disease-Drug Pairs hợp lý** (đã kiểm tra top 20):
+   - E78.2 + C10AA05 (Tăng lipid + Atorvastatin) ✅
+   - I10 + B01AC06 (Tăng HA + Aspirin) ✅
+   - K21 + A02BC05 (Trào ngược + Esomeprazole) ✅
+   - E11.9 + A10BA02 (ĐTĐ type 2 + Metformin) ✅
+
+**Training Script:**
+- Script mới: `train_vn.py` (PyTorch 2.x compatible)
+- Test 1 epoch thành công:
+  - Train Loss: 31.62, KL: 0.47
+  - Test NLL: 14.83
+  - Model params: 1,807,400
+
+**Next Step:** Chạy full training với 50 epochs
 
 ---
 
