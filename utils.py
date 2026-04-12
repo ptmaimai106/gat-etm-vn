@@ -2,7 +2,7 @@
 Utility functions for GAT-ETM training and evaluation
 """
 import numpy as np
-from scipy.sparse import coo_matrix
+from scipy.sparse import coo_matrix, issparse
 from collections import Counter
 from sklearn.neighbors import NearestNeighbors
 
@@ -39,7 +39,11 @@ def get_topic_coherence(beta, train_data, top_n=10):
     """
     K, V = beta.shape
     coherence_scores = []
-    
+
+    # coo_matrix does not support column indexing — convert to csr
+    if issparse(train_data) and not hasattr(train_data, 'indptr'):
+        train_data = train_data.tocsr()
+
     for k in range(K):
         # Get top_n words with highest probability
         top_words = np.argsort(beta[k])[-top_n:][::-1]
