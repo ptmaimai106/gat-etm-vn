@@ -58,10 +58,18 @@ def get_topic_coherence(beta, train_data, top_n=10):
                 docs_with_i = train_data[:, word_i].toarray().flatten() > 0
                 docs_with_j = train_data[:, word_j].toarray().flatten() > 0
                 docs_with_both = docs_with_i & docs_with_j
-                
-                if docs_with_j.sum() > 0:
-                    # PMI-like measure: log(P(word_i, word_j) / P(word_j))
-                    coherence_k += np.log((docs_with_both.sum() + 1) / docs_with_j.sum())
+
+                N = train_data.shape[0]
+                p_i = docs_with_i.sum() / N
+                p_j = docs_with_j.sum() / N
+                p_ij = docs_with_both.sum() / N
+
+                if p_ij > 0 and p_i > 0 and p_j > 0:
+                    # Normalized PMI: NPMI(i,j) = log(P(i,j)/(P(i)*P(j))) / -log(P(i,j))
+                    # Range: [-1, 1], positive means co-occurrence above chance
+                    pmi = np.log(p_ij / (p_i * p_j))
+                    npmi = pmi / (-np.log(p_ij))
+                    coherence_k += npmi
                     count += 1
         
         if count > 0:

@@ -157,6 +157,51 @@ python train_vn.py \
 
 ---
 
+
+ Lần 1 (cũ)                                                                                                           
+                                                                                                                       
+  python train_vn.py `
+    --num_topics 50 `                                                                                                  
+    --epochs 100 `                                                                                                   
+    --graph_path embed_vn/augmented_icdatc_graph_256_renumbered_by_vocab.pkl `                                         
+    --embed_path embed_vn/augmented_icdatc_embed_8_20_10_256_by_vocab.pkl `                                          
+    --tq                                                                                                               
+  # lr_factor=4.0, nonmono=5 (default cũ), TC = PMI thô
+                                                                                                                       
+  Lần 2 — K=50 (so sánh trực tiếp)                                                                                     
+                                                                                                                       
+  python train_vn.py `                                                                                                 
+    --num_topics 50 `                                                                                                
+    --epochs 100 `
+    --graph_path embed_vn/augmented_icdatc_graph_256_renumbered_by_vocab.pkl `
+    --embed_path embed_vn/augmented_icdatc_embed_8_20_10_256_by_vocab.pkl `                                            
+    --save_path results_vn/run2_K50/ `                                                                                 
+    --tq                                                                                                               
+  # lr_factor=2.0, nonmono=10 (default mới), TC = NPMI                                                                 
+                                                                                                                       
+  Lần 2 — K=20 (thử topic collapse ít hơn)                                                                             
+                                                                                                                       
+  python train_vn.py `                                                                                                 
+    --num_topics 20 `                                                                                                
+    --epochs 100 `
+    --graph_path embed_vn/augmented_icdatc_graph_256_renumbered_by_vocab.pkl `                                         
+    --embed_path embed_vn/augmented_icdatc_embed_8_20_10_256_by_vocab.pkl `
+    --save_path results_vn/run2_K20/ `                                                                                 
+    --tq                                                                                                             
+                                                                                                                       
+  Lần 2 — K=30                                                                                                       
+
+  python train_vn.py `
+    --num_topics 30 `
+    --epochs 100 `                                                                                                     
+    --graph_path embed_vn/augmented_icdatc_graph_256_renumbered_by_vocab.pkl `
+    --embed_path embed_vn/augmented_icdatc_embed_8_20_10_256_by_vocab.pkl `                                            
+    --save_path results_vn/run2_K30/ `                                                                                 
+    --tq
+                                                                                                                       
+  ---    
+
+
 ## Lưu ý quan trọng
 
 1. **Đường dẫn embed**: Luôn chỉ rõ `--graph_path` và `--embed_path` vào `embed_vn/`, không dùng default.

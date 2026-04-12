@@ -104,7 +104,7 @@ def parse_args():
                         help='Batch size')
     parser.add_argument('--lr', type=float, default=0.01,
                         help='Learning rate')
-    parser.add_argument('--lr_factor', type=float, default=4.0,
+    parser.add_argument('--lr_factor', type=float, default=2.0,
                         help='LR reduction factor')
     parser.add_argument('--wdecay', type=float, default=1.2e-6,
                         help='Weight decay')
@@ -112,7 +112,7 @@ def parse_args():
                         help='Gradient clipping')
     parser.add_argument('--anneal_lr', type=int, default=1,
                         help='Whether to anneal LR')
-    parser.add_argument('--nonmono', type=int, default=5,
+    parser.add_argument('--nonmono', type=int, default=10,
                         help='Non-monotonic patience')
     parser.add_argument('--bow_norm', type=bool, default=True,
                         help='Normalize BoW')
